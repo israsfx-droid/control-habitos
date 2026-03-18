@@ -821,6 +821,336 @@
   }
   .ai-key-status.ok { color: var(--green); }
   .ai-key-status.err { color: var(--red); }
+
+  /* ── ULTRADIANO PAGE ── */
+  .ultra-header {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 22px 20px 18px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ultra-header::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, rgba(168,85,247,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .ultra-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .ultra-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .ultra-badge {
+    background: var(--purple-dimmer);
+    border: 1px solid rgba(168,85,247,0.25);
+    border-radius: 99px;
+    padding: 3px 10px;
+    font-size: 10px;
+    color: var(--purple);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .ultra-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+  .ultra-start-btn {
+    width: 100%;
+    padding: 13px;
+    border-radius: 13px;
+    border: none;
+    background: var(--purple);
+    color: #fff;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .ultra-start-btn:active { transform: scale(0.98); background: #9333ea; }
+  .ultra-start-btn.reset {
+    background: transparent;
+    border: 1px solid var(--border2);
+    color: var(--text-muted);
+  }
+
+  /* Timeline */
+  .ultra-timeline {
+    position: relative;
+  }
+  .ultra-timeline::before {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .ultra-block {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 10px;
+    position: relative;
+    animation: fadeIn 0.3s ease both;
+  }
+
+  .ultra-block-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border2);
+    background: var(--bg);
+    flex-shrink: 0;
+    margin-top: 18px;
+    margin-left: 14px;
+    z-index: 1;
+    transition: all 0.25s;
+  }
+
+  .ultra-block.active .ultra-block-dot {
+    background: var(--purple);
+    border-color: var(--purple);
+    box-shadow: 0 0 0 3px rgba(168,85,247,0.2);
+  }
+  .ultra-block.done .ultra-block-dot {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .ultra-block.pausa .ultra-block-dot {
+    background: var(--amber);
+    border-color: var(--amber);
+  }
+  .ultra-block.pausa.done .ultra-block-dot {
+    background: var(--green);
+    border-color: var(--green);
+  }
+
+  .ultra-card {
+    flex: 1;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 14px 16px;
+    transition: border-color 0.25s, background 0.25s;
+  }
+
+  .ultra-block.active .ultra-card {
+    border-color: rgba(168,85,247,0.4);
+    background: rgba(168,85,247,0.04);
+  }
+  .ultra-block.done .ultra-card {
+    border-color: rgba(52,211,153,0.2);
+    background: rgba(52,211,153,0.02);
+    opacity: 0.7;
+  }
+  .ultra-block.pausa .ultra-card {
+    border-color: rgba(251,191,36,0.2);
+    background: rgba(251,191,36,0.03);
+  }
+  .ultra-block.pausa.done .ultra-card {
+    border-color: rgba(52,211,153,0.2);
+    opacity: 0.7;
+  }
+
+  .ultra-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .ultra-card-icon { font-size: 16px; flex-shrink: 0; }
+  .ultra-card-info { flex: 1; min-width: 0; }
+  .ultra-card-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .ultra-block.active .ultra-card-name { color: var(--purple); }
+  .ultra-block.pausa .ultra-card-name { color: var(--amber); }
+  .ultra-card-time {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 1px;
+  }
+
+  /* Countdown timer */
+  .ultra-timer {
+    display: none;
+    align-items: center;
+    gap: 6px;
+  }
+  .ultra-block.active .ultra-timer { display: flex; }
+
+  .ultra-timer-display {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--purple);
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .ultra-timer-display.warn { color: var(--amber); animation: pulse-warn 1s ease-in-out infinite; }
+  .ultra-timer-display.end { color: var(--red); }
+  @keyframes pulse-warn {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .ultra-timer-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* Task input */
+  .ultra-task-wrap { margin-top: 10px; }
+  .ultra-task-input {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 13px;
+    font-family: inherit;
+    padding: 9px 12px;
+    outline: none;
+    color-scheme: dark;
+    transition: border-color 0.2s;
+  }
+  .ultra-task-input:focus { border-color: var(--purple); }
+  .ultra-task-input::placeholder { color: var(--text-dim); }
+
+  /* Check + health log buttons */
+  .ultra-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .ultra-check-btn {
+    flex: 1;
+    padding: 9px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .ultra-check-btn:active { transform: scale(0.97); }
+  .ultra-check-btn.checked {
+    background: rgba(52,211,153,0.1);
+    border-color: rgba(52,211,153,0.35);
+    color: var(--green);
+  }
+  .ultra-check-btn.primary-check {
+    background: var(--purple-dimmer);
+    border-color: rgba(168,85,247,0.3);
+    color: var(--purple);
+  }
+
+  /* Health log mini-buttons */
+  .ultra-health-row {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .ultra-health-btn {
+    padding: 5px 10px;
+    border-radius: 99px;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 11px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .ultra-health-btn.logged {
+    background: rgba(52,211,153,0.1);
+    border-color: rgba(52,211,153,0.3);
+    color: var(--green);
+  }
+
+  /* Pause reminder */
+  .ultra-pause-reminder {
+    background: rgba(251,191,36,0.1);
+    border: 1px solid rgba(251,191,36,0.25);
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: none;
+    font-size: 13px;
+    color: var(--amber);
+    margin-bottom: 12px;
+    animation: fadeIn 0.4s ease;
+  }
+  .ultra-pause-reminder.show { display: block; }
+
+  /* Progress summary */
+  .ultra-progress-bar {
+    height: 3px;
+    background: var(--border2);
+    border-radius: 99px;
+    overflow: hidden;
+    margin: 12px 0 6px;
+  }
+  .ultra-progress-fill {
+    height: 100%;
+    background: var(--purple);
+    border-radius: 99px;
+    transition: width 0.5s ease;
+  }
+  .ultra-progress-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  /* Jornada complete */
+  .ultra-complete {
+    background: linear-gradient(135deg, rgba(52,211,153,0.1), rgba(168,85,247,0.08));
+    border: 1px solid rgba(52,211,153,0.25);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 16px;
+    display: none;
+    animation: fadeIn 0.4s ease;
+  }
+  .ultra-complete.show { display: block; }
+  .ultra-complete-title { font-size: 20px; font-weight: 700; color: var(--green); letter-spacing: -0.02em; }
+  .ultra-complete-sub { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
 </style>
 </head>
 <body>
@@ -1236,6 +1566,294 @@
 
   </div><!-- /page-ia -->
 
+  <!-- ══ PAGE: ULTRADIANO ══ -->
+  <div class="page" id="page-ultra">
+    <div class="page-title">Modo Ultradiano</div>
+
+    <!-- Header / Start -->
+    <div class="ultra-header">
+      <div class="ultra-header-row">
+        <div class="ultra-title">Jornada 8h netas</div>
+        <div class="ultra-badge">Flexible</div>
+      </div>
+      <div class="ultra-sub">4 bloques de 90 min · pausas obligatorias de 25 min · 10:00–18:00. Tú decides la tarea de cada bloque.</div>
+      <button class="ultra-start-btn" id="ultraStartBtn" onclick="ultraStart()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5,3 19,12 5,21"/></svg>
+        Iniciar jornada
+      </button>
+    </div>
+
+    <!-- Pause reminder (shown when block ends and pause not checked) -->
+    <div class="ultra-pause-reminder" id="ultraPauseReminder">
+      ⏸ ¡Toma tu descanso! El bloque terminó. Descansa antes de continuar.
+    </div>
+
+    <!-- Complete banner -->
+    <div class="ultra-complete" id="ultraComplete">
+      <div style="font-size:32px;margin-bottom:8px">🏁</div>
+      <div class="ultra-complete-title">¡Jornada completada!</div>
+      <div class="ultra-complete-sub">8 horas netas · Cierra bien el día</div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="ultra-progress-bar" id="ultraProgressBar" style="display:none">
+      <div class="ultra-progress-fill" id="ultraProgressFill" style="width:0%"></div>
+    </div>
+    <div class="ultra-progress-label" id="ultraProgressLabel" style="display:none">
+      <span id="ultraProgressText">0 / 8 bloques completados</span>
+      <span id="ultraProgressTime"></span>
+    </div>
+
+    <!-- Timeline blocks -->
+    <div class="ultra-timeline" id="ultraTimeline">
+
+      <!-- BLOQUE 1 -->
+      <div class="ultra-block" id="ub-0" data-idx="0">
+        <div class="ultra-block-dot"></div>
+        <div class="ultra-card">
+          <div class="ultra-card-header">
+            <div class="ultra-card-icon">🧠</div>
+            <div class="ultra-card-info">
+              <div class="ultra-card-name">Bloque 1 · Deep Focus</div>
+              <div class="ultra-card-time">10:00 – 11:30 · 90 min</div>
+            </div>
+            <div class="ultra-timer" id="ut-0">
+              <div>
+                <div class="ultra-timer-display" id="utd-0">90:00</div>
+                <div class="ultra-timer-label">restante</div>
+              </div>
+            </div>
+          </div>
+          <div class="ultra-task-wrap">
+            <input class="ultra-task-input" id="utask-0" type="text" placeholder="Tarea: escribe tu objetivo para este bloque..." oninput="saveUltraTask(0, this.value)">
+          </div>
+          <div class="ultra-actions">
+            <button class="ultra-check-btn primary-check" id="ubtn-0" onclick="ultraCheck(0)">
+              <svg width="13" height="13" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Completar bloque
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESCANSO 1 -->
+      <div class="ultra-block pausa" id="ub-1" data-idx="1">
+        <div class="ultra-block-dot"></div>
+        <div class="ultra-card">
+          <div class="ultra-card-header">
+            <div class="ultra-card-icon">🚶</div>
+            <div class="ultra-card-info">
+              <div class="ultra-card-name">Descanso 1 · Pausa activa</div>
+              <div class="ultra-card-time">11:30 – 11:55 · 25 min · sin pantalla</div>
+            </div>
+            <div class="ultra-timer" id="ut-1">
+              <div>
+                <div class="ultra-timer-display" id="utd-1">25:00</div>
+                <div class="ultra-timer-label">restante</div>
+              </div>
+            </div>
+          </div>
+          <div class="ultra-health-row">
+            <button class="ultra-health-btn" id="uhl-1-caminar" onclick="logHealth(1,'caminar')">🚶 Caminé</button>
+            <button class="ultra-health-btn" id="uhl-1-estirar" onclick="logHealth(1,'estirar')">🧘 Estiré</button>
+            <button class="ultra-health-btn" id="uhl-1-agua" onclick="logHealth(1,'agua')">💧 Hidraté</button>
+          </div>
+          <div class="ultra-actions" style="margin-top:8px">
+            <button class="ultra-check-btn" id="ubtn-1" onclick="ultraCheck(1)">
+              <svg width="13" height="13" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Pausa completada
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOQUE 2 -->
+      <div class="ultra-block" id="ub-2" data-idx="2">
+        <div class="ultra-block-dot"></div>
+        <div class="ultra-card">
+          <div class="ultra-card-header">
+            <div class="ultra-card-icon">🧠</div>
+            <div class="ultra-card-info">
+              <div class="ultra-card-name">Bloque 2 · Deep Focus</div>
+              <div class="ultra-card-time">11:55 – 13:25 · 90 min</div>
+            </div>
+            <div class="ultra-timer" id="ut-2">
+              <div>
+                <div class="ultra-timer-display" id="utd-2">90:00</div>
+                <div class="ultra-timer-label">restante</div>
+              </div>
+            </div>
+          </div>
+          <div class="ultra-task-wrap">
+            <input class="ultra-task-input" id="utask-2" type="text" placeholder="Tarea: escribe tu objetivo para este bloque..." oninput="saveUltraTask(2, this.value)">
+          </div>
+          <div class="ultra-actions">
+            <button class="ultra-check-btn primary-check" id="ubtn-2" onclick="ultraCheck(2)">
+              <svg width="13" height="13" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Completar bloque
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ALMUERZO -->
+      <div class="ultra-block pausa" id="ub-3" data-idx="3">
+        <div class="ultra-block-dot"></div>
+        <div class="ultra-card">
+          <div class="ultra-card-header">
+            <div class="ultra-card-icon">🥗</div>
+            <div class="ultra-card-info">
+              <div class="ultra-card-name">Almuerzo + Reset</div>
+              <div class="ultra-card-time">13:25 – 13:50 · 25 min</div>
+            </div>
+            <div class="ultra-timer" id="ut-3">
+              <div>
+                <div class="ultra-timer-display" id="utd-3">25:00</div>
+                <div class="ultra-timer-label">restante</div>
+              </div>
+            </div>
+          </div>
+          <div class="ultra-health-row">
+            <button class="ultra-health-btn" id="uhl-3-proteina" onclick="logHealth(3,'proteina')">🍗 Proteína</button>
+            <button class="ultra-health-btn" id="uhl-3-sol" onclick="logHealth(3,'sol')">☀️ Sol</button>
+            <button class="ultra-health-btn" id="uhl-3-agua" onclick="logHealth(3,'agua')">💧 Hidraté</button>
+          </div>
+          <div class="ultra-actions" style="margin-top:8px">
+            <button class="ultra-check-btn" id="ubtn-3" onclick="ultraCheck(3)">
+              <svg width="13" height="13" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Reset completado
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOQUE 3 -->
+      <div class="ultra-block" id="ub-4" data-idx="4">
+        <div class="ultra-block-dot"></div>
+        <div class="ultra-card">
+          <div class="ultra-card-header">
+            <div class="ultra-card-icon">🧠</div>
+            <div class="ultra-card-info">
+              <div class="ultra-card-name">Bloque 3 · Deep Focus</div>
+              <div class="ultra-card-time">13:50 – 15:20 · 90 min</div>
+            </div>
+            <div class="ultra-timer" id="ut-4">
+              <div>
+                <div class="ultra-timer-display" id="utd-4">90:00</div>
+                <div class="ultra-timer-label">restante</div>
+              </div>
+            </div>
+          </div>
+          <div class="ultra-task-wrap">
+            <input class="ultra-task-input" id="utask-4" type="text" placeholder="Tarea: escribe tu objetivo para este bloque..." oninput="saveUltraTask(4, this.value)">
+          </div>
+          <div class="ultra-actions">
+            <button class="ultra-check-btn primary-check" id="ubtn-4" onclick="ultraCheck(4)">
+              <svg width="13" height="13" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Completar bloque
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESCANSO 2 -->
+      <div class="ultra-block pausa" id="ub-5" data-idx="5">
+        <div class="ultra-block-dot"></div>
+        <div class="ultra-card">
+          <div class="ultra-card-header">
+            <div class="ultra-card-icon">🎵</div>
+            <div class="ultra-card-info">
+              <div class="ultra-card-name">Descanso 2 · Breath o música</div>
+              <div class="ultra-card-time">15:20 – 15:45 · 25 min</div>
+            </div>
+            <div class="ultra-timer" id="ut-5">
+              <div>
+                <div class="ultra-timer-display" id="utd-5">25:00</div>
+                <div class="ultra-timer-label">restante</div>
+              </div>
+            </div>
+          </div>
+          <div class="ultra-health-row">
+            <button class="ultra-health-btn" id="uhl-5-breath" onclick="logHealth(5,'breath')">🫁 4-7-8</button>
+            <button class="ultra-health-btn" id="uhl-5-musica" onclick="logHealth(5,'musica')">🎵 Música</button>
+            <button class="ultra-health-btn" id="uhl-5-agua" onclick="logHealth(5,'agua')">💧 Hidraté</button>
+          </div>
+          <div class="ultra-actions" style="margin-top:8px">
+            <button class="ultra-check-btn" id="ubtn-5" onclick="ultraCheck(5)">
+              <svg width="13" height="13" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Pausa completada
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOQUE 4 -->
+      <div class="ultra-block" id="ub-6" data-idx="6">
+        <div class="ultra-block-dot"></div>
+        <div class="ultra-card">
+          <div class="ultra-card-header">
+            <div class="ultra-card-icon">⚡</div>
+            <div class="ultra-card-info">
+              <div class="ultra-card-name">Bloque 4 · Tareas medias o deep</div>
+              <div class="ultra-card-time">15:45 – 17:15 · 90 min</div>
+            </div>
+            <div class="ultra-timer" id="ut-6">
+              <div>
+                <div class="ultra-timer-display" id="utd-6">90:00</div>
+                <div class="ultra-timer-label">restante</div>
+              </div>
+            </div>
+          </div>
+          <div class="ultra-task-wrap">
+            <input class="ultra-task-input" id="utask-6" type="text" placeholder="Tarea: escribe tu objetivo para este bloque..." oninput="saveUltraTask(6, this.value)">
+          </div>
+          <div class="ultra-actions">
+            <button class="ultra-check-btn primary-check" id="ubtn-6" onclick="ultraCheck(6)">
+              <svg width="13" height="13" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Completar bloque
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CIERRE -->
+      <div class="ultra-block pausa" id="ub-7" data-idx="7">
+        <div class="ultra-block-dot"></div>
+        <div class="ultra-card">
+          <div class="ultra-card-header">
+            <div class="ultra-card-icon">📋</div>
+            <div class="ultra-card-info">
+              <div class="ultra-card-name">Cierre · Wrap-up</div>
+              <div class="ultra-card-time">17:15 – 18:00 · 45 min</div>
+            </div>
+            <div class="ultra-timer" id="ut-7">
+              <div>
+                <div class="ultra-timer-display" id="utd-7">45:00</div>
+                <div class="ultra-timer-label">restante</div>
+              </div>
+            </div>
+          </div>
+          <div class="ultra-task-wrap">
+            <input class="ultra-task-input" id="utask-7" type="text" placeholder="¿Qué lograste hoy? Plan de mañana..." oninput="saveUltraTask(7, this.value)">
+          </div>
+          <div class="ultra-actions">
+            <button class="ultra-check-btn primary-check" id="ubtn-7" onclick="ultraCheck(7)">
+              <svg width="13" height="13" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Cerrar jornada
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /ultra-timeline -->
+
+    <!-- Reset button -->
+    <div style="margin-top:20px">
+      <button class="ultra-start-btn reset" onclick="ultraReset()">↺ Reiniciar jornada</button>
+    </div>
+
+  </div><!-- /page-ultra -->
+
 </div><!-- /app -->
 
 <!-- Bottom Nav -->
@@ -1269,6 +1887,14 @@
       <circle cx="12" cy="12" r="3" fill="currentColor" opacity="0.3"/>
     </svg>
     Coach IA
+  </button>
+  <button class="nav-btn" onclick="goPage('ultra',this)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="3"/>
+      <path d="M3 9h18"/>
+      <path d="M9 3v6M9 15v6M15 3v6M15 15v6"/>
+    </svg>
+    Jornada
   </button>
 </nav>
 
@@ -1747,6 +2373,7 @@ function goPage(name, btn) {
   btn.classList.add('active');
 
   if (name === 'dash') loadDashboard();
+  if (name === 'ultra') ultraRenderAll();
 }
 
 // ═══════════════════════════════════════════
@@ -2180,6 +2807,7 @@ async function init() {
   await loadToday();
   await loadNotifSettings();
   await initAI();
+  ultraLoadState();
   registerSW();
 
   // Auto-refresh if day changes
@@ -2366,6 +2994,267 @@ function expandHistory(el) {
 }
 
 init();
+
+// ═══════════════════════════════════════════
+//  MODO ULTRADIANO FLEXIBLE
+// ═══════════════════════════════════════════
+
+const ULTRA_BLOCKS = [
+  { id: 0, name: 'Bloque 1',       type: 'focus',  mins: 90, icon: '🧠' },
+  { id: 1, name: 'Descanso 1',     type: 'pausa',  mins: 25, icon: '🚶' },
+  { id: 2, name: 'Bloque 2',       type: 'focus',  mins: 90, icon: '🧠' },
+  { id: 3, name: 'Almuerzo',       type: 'pausa',  mins: 25, icon: '🥗' },
+  { id: 4, name: 'Bloque 3',       type: 'focus',  mins: 90, icon: '🧠' },
+  { id: 5, name: 'Descanso 2',     type: 'pausa',  mins: 25, icon: '🎵' },
+  { id: 6, name: 'Bloque 4',       type: 'focus',  mins: 90, icon: '⚡' },
+  { id: 7, name: 'Cierre',         type: 'cierre', mins: 45, icon: '📋' },
+];
+
+let ultraState = {
+  started: false,
+  current: -1,          // index of active block
+  completed: [],        // array of completed indices
+  tasks: {},            // {idx: string}
+  healthLogs: {},       // {idx: [items]}
+  timerEnd: null,       // timestamp when current block ends
+  timerInterval: null,
+  pauseReminderShown: false,
+};
+
+// Load state from localStorage (fast, no IndexedDB needed)
+function ultraLoadState() {
+  const todayKey = getTodayKey();
+  const raw = localStorage.getItem('ultra_' + todayKey);
+  if (raw) {
+    try {
+      const saved = JSON.parse(raw);
+      ultraState = { ...ultraState, ...saved };
+      // Restore timer if still running
+      if (ultraState.timerEnd && ultraState.current >= 0 && !ultraState.completed.includes(ultraState.current)) {
+        const remaining = ultraState.timerEnd - Date.now();
+        if (remaining > 0) {
+          ultraStartTimer(ultraState.current, Math.ceil(remaining / 1000));
+        } else {
+          ultraOnBlockExpired(ultraState.current);
+        }
+      }
+    } catch(e) {}
+  }
+  ultraRenderAll();
+}
+
+function ultraSaveState() {
+  const todayKey = getTodayKey();
+  localStorage.setItem('ultra_' + todayKey, JSON.stringify({
+    started: ultraState.started,
+    current: ultraState.current,
+    completed: ultraState.completed,
+    tasks: ultraState.tasks,
+    healthLogs: ultraState.healthLogs,
+    timerEnd: ultraState.timerEnd,
+    pauseReminderShown: ultraState.pauseReminderShown,
+  }));
+}
+
+function ultraStart() {
+  if (ultraState.started && ultraState.current >= 0) return;
+  ultraState.started = true;
+  ultraState.current = 0;
+  ultraState.completed = [];
+  ultraStartTimer(0, ULTRA_BLOCKS[0].mins * 60);
+  ultraSaveState();
+  ultraRenderAll();
+
+  // Show progress
+  document.getElementById('ultraProgressBar').style.display = 'block';
+  document.getElementById('ultraProgressLabel').style.display = 'flex';
+}
+
+function ultraStartTimer(idx, seconds) {
+  if (ultraState.timerInterval) clearInterval(ultraState.timerInterval);
+  ultraState.timerEnd = Date.now() + seconds * 1000;
+
+  const tick = () => {
+    const remaining = Math.max(0, Math.ceil((ultraState.timerEnd - Date.now()) / 1000));
+    const m = Math.floor(remaining / 60);
+    const s = remaining % 60;
+    const display = document.getElementById('utd-' + idx);
+    if (display) {
+      display.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+      display.className = 'ultra-timer-display';
+      if (remaining <= 300 && remaining > 0) display.classList.add('warn'); // last 5 min
+      if (remaining === 0) {
+        display.classList.add('end');
+        ultraOnBlockExpired(idx);
+      }
+    }
+    if (remaining <= 0) clearInterval(ultraState.timerInterval);
+  };
+
+  tick();
+  ultraState.timerInterval = setInterval(tick, 1000);
+}
+
+function ultraOnBlockExpired(idx) {
+  clearInterval(ultraState.timerInterval);
+  // If it's a focus block and next is a pause, remind about pause
+  const block = ULTRA_BLOCKS[idx];
+  if (block && block.type === 'focus') {
+    const reminder = document.getElementById('ultraPauseReminder');
+    if (reminder) { reminder.classList.add('show'); ultraState.pauseReminderShown = true; }
+  }
+  // Play soft beep via AudioContext
+  ultraBeep();
+  ultraSaveState();
+}
+
+function ultraBeep() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.frequency.value = 880;
+    osc.type = 'sine';
+    gain.gain.setValueAtTime(0.3, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.8);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.8);
+  } catch(e) {}
+}
+
+function ultraCheck(idx) {
+  if (ultraState.completed.includes(idx)) return;
+  ultraState.completed.push(idx);
+
+  // If this was the active block, move to next
+  if (ultraState.current === idx) {
+    clearInterval(ultraState.timerInterval);
+    // Hide pause reminder
+    document.getElementById('ultraPauseReminder').classList.remove('show');
+    ultraState.pauseReminderShown = false;
+
+    // Find next uncompleted block
+    const nextIdx = idx + 1;
+    if (nextIdx < ULTRA_BLOCKS.length) {
+      ultraState.current = nextIdx;
+      ultraStartTimer(nextIdx, ULTRA_BLOCKS[nextIdx].mins * 60);
+    } else {
+      ultraState.current = -1;
+      ultraState.started = false;
+      document.getElementById('ultraComplete').classList.add('show');
+      document.getElementById('ultraStartBtn').style.display = 'none';
+      triggerConfetti();
+    }
+  }
+
+  ultraSaveState();
+  ultraRenderAll();
+}
+
+function saveUltraTask(idx, val) {
+  ultraState.tasks[idx] = val;
+  ultraSaveState();
+}
+
+function logHealth(blockIdx, item) {
+  if (!ultraState.healthLogs[blockIdx]) ultraState.healthLogs[blockIdx] = [];
+  const arr = ultraState.healthLogs[blockIdx];
+  const pos = arr.indexOf(item);
+  if (pos === -1) arr.push(item);
+  else arr.splice(pos, 1);
+  ultraSaveState();
+  // Update button visual
+  const btn = document.getElementById(`uhl-${blockIdx}-${item}`);
+  if (btn) btn.classList.toggle('logged', arr.includes(item));
+}
+
+function ultraReset() {
+  clearInterval(ultraState.timerInterval);
+  ultraState = {
+    started: false, current: -1, completed: [],
+    tasks: {}, healthLogs: {}, timerEnd: null,
+    timerInterval: null, pauseReminderShown: false,
+  };
+  localStorage.removeItem('ultra_' + getTodayKey());
+  document.getElementById('ultraComplete').classList.remove('show');
+  document.getElementById('ultraStartBtn').style.display = '';
+  document.getElementById('ultraPauseReminder').classList.remove('show');
+  // Reset all timer displays
+  ULTRA_BLOCKS.forEach(b => {
+    const d = document.getElementById('utd-' + b.id);
+    if (d) d.textContent = `${String(b.mins).padStart(2,'0')}:00`;
+  });
+  ultraRenderAll();
+}
+
+function ultraRenderAll() {
+  ULTRA_BLOCKS.forEach((b, idx) => {
+    const blockEl = document.getElementById('ub-' + idx);
+    if (!blockEl) return;
+
+    const isDone = ultraState.completed.includes(idx);
+    const isActive = ultraState.current === idx;
+
+    blockEl.classList.remove('active', 'done');
+    if (isDone) blockEl.classList.add('done');
+    if (isActive && !isDone) blockEl.classList.add('active');
+
+    // Check button
+    const btn = document.getElementById('ubtn-' + idx);
+    if (btn && isDone) {
+      btn.classList.add('checked');
+      btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Completado`;
+    }
+
+    // Task input
+    const taskInput = document.getElementById('utask-' + idx);
+    if (taskInput && ultraState.tasks[idx] !== undefined) {
+      taskInput.value = ultraState.tasks[idx];
+    }
+
+    // Health log buttons
+    const logs = ultraState.healthLogs[idx] || [];
+    logs.forEach(item => {
+      const hBtn = document.getElementById(`uhl-${idx}-${item}`);
+      if (hBtn) hBtn.classList.add('logged');
+    });
+  });
+
+  // Start button text
+  const startBtn = document.getElementById('ultraStartBtn');
+  if (startBtn) {
+    if (ultraState.started) {
+      startBtn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Jornada en curso`;
+      startBtn.style.opacity = '0.5';
+      startBtn.style.cursor = 'default';
+    } else {
+      startBtn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5,3 19,12 5,21"/></svg> Iniciar jornada`;
+      startBtn.style.opacity = '';
+      startBtn.style.cursor = '';
+    }
+  }
+
+  // Progress
+  const done = ultraState.completed.length;
+  const total = ULTRA_BLOCKS.length;
+  const pct = Math.round((done / total) * 100);
+  const fill = document.getElementById('ultraProgressFill');
+  const text = document.getElementById('ultraProgressText');
+  const timeEl = document.getElementById('ultraProgressTime');
+  if (fill) fill.style.width = pct + '%';
+  if (text) text.textContent = `${done} / ${total} bloques completados`;
+
+  if (ultraState.started) {
+    document.getElementById('ultraProgressBar').style.display = 'block';
+    document.getElementById('ultraProgressLabel').style.display = 'flex';
+    // Elapsed time estimate
+    const minsPerBlock = [90,25,90,25,90,25,90,45];
+    const doneMins = ultraState.completed.reduce((sum, i) => sum + minsPerBlock[i], 0);
+    if (timeEl) timeEl.textContent = `~${doneMins} min trabajados`;
+  }
+}
 </script>
 </body>
 </html>
