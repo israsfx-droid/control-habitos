@@ -1,0 +1,2355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Isra Habits">
+<meta name="theme-color" content="#0A0A0A">
+<title>Isra Habits</title>
+
+<!-- Inline manifest via JS -->
+<script>
+(function(){
+  const manifest = {
+    name: "Isra Habits",
+    short_name: "Isra Habits",
+    description: "Tracker personal de hábitos · Plan Matura.Fit",
+    start_url: "./",
+    display: "standalone",
+    background_color: "#0A0A0A",
+    theme_color: "#0A0A0A",
+    orientation: "portrait",
+    icons: [
+      { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' fill='%230A0A0A'/%3E%3Crect x='56' y='28' width='80' height='136' rx='8' fill='none' stroke='%236B7280' stroke-width='4'/%3E%3Crect x='72' y='20' width='48' height='20' rx='4' fill='none' stroke='%236B7280' stroke-width='4'/%3E%3Cline x1='72' y1='72' x2='120' y2='72' stroke='%236B7280' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='72' y1='92' x2='120' y2='92' stroke='%236B7280' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='72' y1='112' x2='105' y2='112' stroke='%236B7280' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='63' cy='72' r='4' fill='%23A855F7'/%3E%3Ccircle cx='63' cy='92' r='4' fill='%23A855F7'/%3E%3Ccircle cx='63' cy='112' r='4' fill='%236B7280'/%3E%3C/svg%3E", sizes: "192x192", type: "image/svg+xml" },
+      { src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%230A0A0A'/%3E%3Crect x='150' y='75' width='212' height='362' rx='18' fill='none' stroke='%236B7280' stroke-width='10'/%3E%3Crect x='194' y='54' width='124' height='52' rx='10' fill='none' stroke='%236B7280' stroke-width='10'/%3E%3Cline x1='194' y1='196' x2='318' y2='196' stroke='%236B7280' stroke-width='8' stroke-linecap='round'/%3E%3Cline x1='194' y1='248' x2='318' y2='248' stroke='%236B7280' stroke-width='8' stroke-linecap='round'/%3E%3Cline x1='194' y1='300' x2='274' y2='300' stroke='%236B7280' stroke-width='8' stroke-linecap='round'/%3E%3Ccircle cx='166' cy='196' r='11' fill='%23A855F7'/%3E%3Ccircle cx='166' cy='248' r='11' fill='%23A855F7'/%3E%3Ccircle cx='166' cy='300' r='11' fill='%236B7280'/%3E%3C/svg%3E", sizes: "512x512", type: "image/svg+xml" }
+    ]
+  };
+  const blob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('link');
+  link.rel = 'manifest';
+  link.href = url;
+  document.head.appendChild(link);
+})();
+</script>
+
+<!-- Apple touch icon inline -->
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='36' fill='%230A0A0A'/%3E%3Crect x='50' y='26' width='80' height='128' rx='8' fill='none' stroke='%236B7280' stroke-width='4'/%3E%3Crect x='66' y='18' width='48' height='20' rx='4' fill='none' stroke='%236B7280' stroke-width='4'/%3E%3Cline x1='66' y1='70' x2='114' y2='70' stroke='%236B7280' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='66' y1='90' x2='114' y2='90' stroke='%236B7280' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='66' y1='110' x2='100' y2='110' stroke='%236B7280' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='57' cy='70' r='4' fill='%23A855F7'/%3E%3Ccircle cx='57' cy='90' r='4' fill='%23A855F7'/%3E%3Ccircle cx='57' cy='110' r='4' fill='%236B7280'/%3E%3C/svg%3E">
+
+<style>
+  :root {
+    --bg: #0A0A0A;
+    --bg2: #111111;
+    --bg3: #1A1A1A;
+    --border: #222222;
+    --border2: #2A2A2A;
+    --purple: #A855F7;
+    --purple-dim: rgba(168,85,247,0.15);
+    --purple-dimmer: rgba(168,85,247,0.07);
+    --text: #D1D5DB;
+    --text-muted: #6B7280;
+    --text-dim: #374151;
+    --green: #34D399;
+    --blue: #60A5FA;
+    --amber: #FBBF24;
+    --red: #F87171;
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    overflow-x: hidden;
+  }
+
+  /* ── LAYOUT ── */
+  .app {
+    max-width: 430px;
+    margin: 0 auto;
+    padding-top: calc(var(--safe-top) + 16px);
+    padding-bottom: calc(var(--safe-bottom) + 80px);
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* ── NAV ── */
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0; right: 0;
+    background: rgba(10,10,10,0.96);
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    padding-bottom: calc(10px + var(--safe-bottom));
+    z-index: 100;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .nav-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 4px 16px;
+    border-radius: 10px;
+    transition: color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav-btn svg { width: 22px; height: 22px; }
+  .nav-btn.active { color: var(--purple); }
+  .nav-btn.active svg { filter: drop-shadow(0 0 6px rgba(168,85,247,0.5)); }
+
+  /* ── PAGES ── */
+  .page { display: none; animation: fadeIn 0.25s ease; }
+  .page.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ── TYPOGRAPHY ── */
+  .page-title {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    margin-top: 28px;
+  }
+
+  /* ── SCORE ── */
+  .score-hero {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 28px 24px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .score-hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 140px; height: 140px;
+    background: radial-gradient(circle, rgba(168,85,247,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .score-ring {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+  }
+
+  .score-ring svg { width: 90px; height: 90px; transform: rotate(-90deg); }
+  .score-ring-bg { fill: none; stroke: var(--border2); stroke-width: 5; }
+  .score-ring-fill { fill: none; stroke: var(--purple); stroke-width: 5; stroke-linecap: round; transition: stroke-dashoffset 0.8s cubic-bezier(0.4,0,0.2,1); }
+
+  .score-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .score-number {
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .score-label-sm { font-size: 9px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+
+  .score-meta { flex: 1; }
+  .score-meta-title { font-size: 18px; font-weight: 600; color: #fff; letter-spacing: -0.02em; }
+  .score-meta-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+  .score-meta-streak { display: inline-flex; align-items: center; gap: 5px; margin-top: 10px; background: var(--purple-dimmer); border: 1px solid rgba(168,85,247,0.2); border-radius: 99px; padding: 4px 12px; font-size: 11px; color: var(--purple); }
+
+  /* ── HABIT CARDS ── */
+  .habit-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 18px;
+    margin-bottom: 10px;
+    transition: border-color 0.25s, background 0.25s;
+  }
+
+  .habit-card.done {
+    border-color: rgba(168,85,247,0.35);
+    background: rgba(168,85,247,0.04);
+  }
+
+  .habit-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .habit-check {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+    background: transparent;
+  }
+
+  .habit-card.done .habit-check {
+    background: var(--purple);
+    border-color: var(--purple);
+  }
+
+  .habit-check-svg { opacity: 0; transform: scale(0.4); transition: all 0.2s ease 0.05s; }
+  .habit-card.done .habit-check-svg { opacity: 1; transform: scale(1); }
+
+  .habit-info { flex: 1; min-width: 0; }
+  .habit-name { font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.2; }
+  .habit-card.done .habit-name { color: var(--purple); }
+  .habit-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .habit-icon { font-size: 20px; flex-shrink: 0; }
+
+  /* ── INPUT EXTRAS ── */
+  .habit-extra {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    display: none;
+  }
+
+  .habit-card.expanded .habit-extra { display: block; }
+
+  .extra-label { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
+
+  .slider-row { display: flex; align-items: center; gap: 10px; }
+
+  input[type="range"] {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 3px;
+    background: var(--border2);
+    border-radius: 99px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--purple);
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:active { transform: scale(1.3); }
+
+  .slider-val { font-size: 12px; font-weight: 600; color: var(--purple); min-width: 52px; text-align: right; }
+
+  input[type="time"] {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 15px;
+    font-family: inherit;
+    padding: 8px 12px;
+    outline: none;
+    width: 100%;
+    color-scheme: dark;
+    cursor: pointer;
+  }
+
+  input[type="time"]:focus { border-color: var(--purple); }
+
+  select {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 13px;
+    font-family: inherit;
+    padding: 8px 12px;
+    outline: none;
+    width: 100%;
+    color-scheme: dark;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  select:focus { border-color: var(--purple); }
+
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+  }
+
+  .day-chip {
+    aspect-ratio: 1;
+    border-radius: 8px;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 10px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .day-chip.on { background: var(--purple-dim); border-color: var(--purple); color: var(--purple); }
+
+  /* ── WATER PROGRESS ── */
+  .water-bar-wrap {
+    height: 6px;
+    background: var(--border2);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-top: 10px;
+  }
+
+  .water-bar-fill {
+    height: 100%;
+    background: var(--blue);
+    border-radius: 99px;
+    transition: width 0.4s ease;
+  }
+
+  /* ── MEALS ── */
+  .meal-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .meal-row:last-child { border-bottom: none; }
+
+  .meal-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--border2);
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+
+  .meal-row.done .meal-dot { background: var(--purple); box-shadow: 0 0 8px rgba(168,85,247,0.4); }
+  .meal-time { font-size: 11px; color: var(--text-muted); min-width: 60px; }
+  .meal-name { font-size: 13px; color: var(--text); flex: 1; }
+  .meal-row.done .meal-name { color: var(--text-muted); text-decoration: line-through; text-decoration-color: var(--purple); }
+  .meal-check-icon { opacity: 0; transition: opacity 0.2s; color: var(--purple); font-size: 14px; }
+  .meal-row.done .meal-check-icon { opacity: 1; }
+
+  /* ── COMPLETE BANNER ── */
+  .complete-banner {
+    background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(168,85,247,0.04));
+    border: 1px solid rgba(168,85,247,0.3);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    display: none;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .complete-banner.show { display: block; }
+  .complete-title { font-size: 20px; font-weight: 700; color: var(--purple); letter-spacing: -0.02em; }
+  .complete-sub { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+  /* ── CONFETTI ── */
+  .confetti-container { position: fixed; inset: 0; pointer-events: none; z-index: 999; overflow: hidden; }
+
+  .c-piece {
+    position: absolute;
+    width: 5px; height: 8px;
+    border-radius: 2px;
+    animation: cfall linear forwards;
+    opacity: 0;
+  }
+
+  @keyframes cfall {
+    0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(105vh) rotate(540deg); opacity: 0; }
+  }
+
+  /* ── DASHBOARD ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .stat-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+  }
+
+  .stat-card.full { grid-column: 1/-1; }
+  .stat-label { font-size: 10px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .stat-value { font-size: 28px; font-weight: 700; color: #fff; letter-spacing: -0.03em; line-height: 1; }
+  .stat-unit { font-size: 13px; color: var(--text-muted); font-weight: 400; }
+  .stat-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+  /* ── HEATMAP ── */
+  .heatmap-scroll { overflow-x: auto; padding-bottom: 4px; }
+  .heatmap-scroll::-webkit-scrollbar { height: 2px; }
+  .heatmap-scroll::-webkit-scrollbar-thumb { background: var(--border2); }
+
+  .heatmap-grid {
+    display: flex;
+    gap: 3px;
+    width: max-content;
+  }
+
+  .heatmap-col { display: flex; flex-direction: column; gap: 3px; }
+
+  .heatmap-cell {
+    width: 12px; height: 12px;
+    border-radius: 2px;
+    background: var(--bg3);
+    transition: background 0.3s;
+    cursor: pointer;
+  }
+
+  .heatmap-cell[data-v="1"] { background: rgba(168,85,247,0.3); }
+  .heatmap-cell[data-v="2"] { background: rgba(168,85,247,0.55); }
+  .heatmap-cell[data-v="3"] { background: rgba(168,85,247,0.8); }
+  .heatmap-cell[data-v="4"] { background: var(--purple); }
+
+  .heatmap-months {
+    display: flex;
+    gap: 3px;
+    width: max-content;
+    margin-bottom: 4px;
+  }
+
+  .heatmap-month-label { font-size: 9px; color: var(--text-dim); letter-spacing: 0.05em; }
+
+  /* ── CALENDAR ── */
+  .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .cal-title { font-size: 14px; font-weight: 600; color: var(--text); }
+  .cal-nav { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 18px; padding: 4px 8px; -webkit-tap-highlight-color: transparent; }
+
+  .cal-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+    margin-bottom: 4px;
+  }
+
+  .cal-wd { text-align: center; font-size: 9px; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 0; }
+
+  .cal-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .cal-day.today { color: #fff; font-weight: 700; }
+  .cal-day.today::after { content: ''; position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%); width: 3px; height: 3px; border-radius: 50%; background: var(--purple); }
+  .cal-day.good { background: var(--purple-dim); color: var(--purple); border: 1px solid rgba(168,85,247,0.25); }
+  .cal-day.perfect { background: rgba(168,85,247,0.2); color: var(--purple); font-weight: 600; }
+  .cal-day.other-month { color: var(--text-dim); }
+
+  /* ── CHARTS ── */
+  .chart-wrap {
+    position: relative;
+    height: 120px;
+    margin-top: 8px;
+  }
+
+  canvas { width: 100% !important; }
+
+  /* ── NOTIFICATIONS ── */
+  .notif-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: border-color 0.2s;
+  }
+
+  .notif-card.on { border-color: rgba(168,85,247,0.35); }
+  .notif-icon { font-size: 22px; flex-shrink: 0; }
+  .notif-info { flex: 1; }
+  .notif-title { font-size: 14px; font-weight: 500; color: var(--text); }
+  .notif-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+  .toggle {
+    width: 44px; height: 26px;
+    border-radius: 99px;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    position: relative;
+    flex-shrink: 0;
+    transition: background 0.25s, border-color 0.25s;
+    cursor: pointer;
+  }
+
+  .toggle::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.25s;
+  }
+
+  .toggle.on { background: var(--purple-dim); border-color: var(--purple); }
+  .toggle.on::after { transform: translateX(18px); background: var(--purple); }
+
+  /* ── ALERT BADGE ── */
+  .alert-badge {
+    background: rgba(251,191,36,0.15);
+    border: 1px solid rgba(251,191,36,0.3);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--amber);
+    margin-bottom: 10px;
+    display: none;
+  }
+
+  .alert-badge.show { display: block; }
+
+  /* ── PROGRESS BARS ── */
+  .mini-prog { height: 3px; background: var(--border2); border-radius: 99px; overflow: hidden; margin-top: 6px; }
+  .mini-prog-fill { height: 100%; border-radius: 99px; transition: width 0.6s ease; }
+
+  /* ── MISC ── */
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+  .btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn:active { transform: scale(0.98); }
+  .btn.primary { background: var(--purple); border-color: var(--purple); color: #fff; }
+  .btn.primary:active { background: #9333ea; }
+
+  .empty-state { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 13px; }
+  .empty-icon { font-size: 36px; margin-bottom: 10px; }
+
+  /* ── IA PAGE ── */
+  .ai-hero {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 24px 20px 20px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .ai-hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .ai-hero-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .ai-hero-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .ai-btn {
+    width: 100%;
+    padding: 13px;
+    border-radius: 13px;
+    border: none;
+    background: var(--purple);
+    color: #fff;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    letter-spacing: -0.01em;
+  }
+  .ai-btn:active { transform: scale(0.98); background: #9333ea; }
+  .ai-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .ai-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .ai-chip {
+    padding: 7px 14px;
+    border-radius: 99px;
+    border: 1px solid var(--border2);
+    background: var(--bg2);
+    color: var(--text-muted);
+    font-size: 12px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .ai-chip:hover, .ai-chip.selected {
+    border-color: var(--purple);
+    color: var(--purple);
+    background: var(--purple-dimmer);
+  }
+
+  .ai-response-wrap {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .ai-response-wrap.show { display: block; }
+
+  .ai-response-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .ai-response-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--purple);
+    flex-shrink: 0;
+  }
+  .ai-response-dot.loading {
+    animation: pulse-dot 1.2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+  .ai-response-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--purple);
+  }
+  .ai-response-body {
+    padding: 16px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.75;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .ai-response-body.loading-dots::after {
+    content: '';
+    display: inline-block;
+    animation: dots 1.4s steps(3, end) infinite;
+  }
+  @keyframes dots {
+    0%   { content: ''; }
+    33%  { content: '·'; }
+    66%  { content: '··'; }
+    100% { content: '···'; }
+  }
+
+  .ai-history-item {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .ai-history-item:hover { border-color: rgba(168,85,247,0.3); }
+  .ai-history-date {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .ai-history-preview {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .ai-apikey-wrap {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .ai-apikey-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .ai-apikey-row {
+    display: flex;
+    gap: 8px;
+  }
+  .ai-apikey-input {
+    flex: 1;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 13px;
+    font-family: inherit;
+    padding: 9px 12px;
+    outline: none;
+    color-scheme: dark;
+  }
+  .ai-apikey-input:focus { border-color: var(--purple); }
+  .ai-apikey-save {
+    padding: 9px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--purple);
+    background: var(--purple-dimmer);
+    color: var(--purple);
+    font-size: 13px;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .ai-apikey-save:active { background: var(--purple-dim); }
+  .ai-key-status {
+    font-size: 11px;
+    margin-top: 8px;
+    color: var(--text-muted);
+  }
+  .ai-key-status.ok { color: var(--green); }
+  .ai-key-status.err { color: var(--red); }
+</style>
+</head>
+<body>
+
+<div class="confetti-container" id="confettiContainer"></div>
+
+<div class="app" id="app">
+
+  <!-- ══ PAGE: HOY ══ -->
+  <div class="page active" id="page-hoy">
+    <div class="page-title" id="todayDateLabel">Cargando...</div>
+
+    <div id="completeBanner" class="complete-banner">
+      <div style="font-size:32px;margin-bottom:8px">🎉</div>
+      <div class="complete-title">¡Racha intacta!</div>
+      <div class="complete-sub">Completaste todos tus hábitos hoy</div>
+    </div>
+
+    <!-- Score -->
+    <div class="score-hero" id="scoreHero">
+      <div class="score-ring">
+        <svg viewBox="0 0 90 90">
+          <circle class="score-ring-bg" cx="45" cy="45" r="38"/>
+          <circle class="score-ring-fill" id="scoreRingFill" cx="45" cy="45" r="38"
+            stroke-dasharray="239" stroke-dashoffset="239"/>
+        </svg>
+        <div class="score-center">
+          <div class="score-number" id="scoreBig">0</div>
+          <div class="score-label-sm">score</div>
+        </div>
+      </div>
+      <div class="score-meta">
+        <div class="score-meta-title" id="scoreTitle">Empieza el día</div>
+        <div class="score-meta-sub" id="scoreSubtitle">Marca tus hábitos</div>
+        <div class="score-meta-streak">
+          <span>🔥</span>
+          <span id="streakDisplay">0 días</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Agua -->
+    <div class="section-label">Hidratación</div>
+    <div class="habit-card" id="card-agua">
+      <div class="habit-header" onclick="toggleCard('agua')">
+        <div class="habit-check">
+          <svg class="habit-check-svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="habit-icon">💧</div>
+        <div class="habit-info">
+          <div class="habit-name">Agua diaria</div>
+          <div class="habit-sub">Meta: 2,400–2,700 ml · <span id="waterDisplay">0 ml</span></div>
+        </div>
+      </div>
+      <div class="habit-extra">
+        <div class="extra-label">¿Cuánto tomaste? (ml)</div>
+        <div class="slider-row">
+          <input type="range" id="waterSlider" min="0" max="3000" step="50" value="0" oninput="onWaterChange(this.value)">
+          <div class="slider-val" id="waterSliderVal">0 ml</div>
+        </div>
+        <div class="water-bar-wrap">
+          <div class="water-bar-fill" id="waterBarFill" style="width:0%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:4px;">
+          <span style="font-size:10px;color:var(--text-dim)">0</span>
+          <span style="font-size:10px;color:var(--blue)">2,400 ml meta</span>
+          <span style="font-size:10px;color:var(--text-dim)">3,000</span>
+        </div>
+        <div id="waterAlert" class="alert-badge" style="margin-top:10px">⚠️ Aún no alcanzas los 2,400 ml mínimos</div>
+      </div>
+    </div>
+
+    <!-- Sueño -->
+    <div class="section-label">Sueño</div>
+    <div class="habit-card" id="card-sueno">
+      <div class="habit-header" onclick="toggleCard('sueno')">
+        <div class="habit-check">
+          <svg class="habit-check-svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="habit-icon">🌙</div>
+        <div class="habit-info">
+          <div class="habit-name">Calidad de sueño</div>
+          <div class="habit-sub">Acostarse 22:30–23:00 · mín. 7h</div>
+        </div>
+      </div>
+      <div class="habit-extra">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div>
+            <div class="extra-label">Me acosté a</div>
+            <input type="time" id="bedtimeInput" value="23:00" onchange="onSleepChange()">
+          </div>
+          <div>
+            <div class="extra-label">Me levanté a</div>
+            <input type="time" id="waketimeInput" value="07:00" onchange="onSleepChange()">
+          </div>
+        </div>
+        <div id="sleepInfo" style="margin-top:10px;font-size:12px;color:var(--text-muted)"></div>
+        <div id="sleepAlert" class="alert-badge" style="margin-top:8px"></div>
+      </div>
+    </div>
+
+    <!-- Comidas -->
+    <div class="section-label">Comidas</div>
+    <div class="habit-card" id="card-comidas">
+      <div class="habit-header" onclick="toggleCard('comidas')">
+        <div class="habit-check">
+          <svg class="habit-check-svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="habit-icon">🥗</div>
+        <div class="habit-info">
+          <div class="habit-name">Plan de comidas</div>
+          <div class="habit-sub" id="mealsSubtitle">0 / 4 comidas</div>
+        </div>
+      </div>
+      <div class="habit-extra">
+        <div id="mealsList">
+          <div class="meal-row" data-meal="desayuno" onclick="toggleMeal('desayuno')">
+            <div class="meal-dot"></div>
+            <div class="meal-time">10:00 am</div>
+            <div class="meal-name">Desayuno</div>
+            <div class="meal-check-icon">✓</div>
+          </div>
+          <div class="meal-row" data-meal="comida" onclick="toggleMeal('comida')">
+            <div class="meal-dot"></div>
+            <div class="meal-time">1–2 pm</div>
+            <div class="meal-name">Comida</div>
+            <div class="meal-check-icon">✓</div>
+          </div>
+          <div class="meal-row" data-meal="snack" onclick="toggleMeal('snack')">
+            <div class="meal-dot"></div>
+            <div class="meal-time">4–6 pm</div>
+            <div class="meal-name">Snack</div>
+            <div class="meal-check-icon">✓</div>
+          </div>
+          <div class="meal-row" data-meal="cena" onclick="toggleMeal('cena')">
+            <div class="meal-dot"></div>
+            <div class="meal-time">8–10 pm</div>
+            <div class="meal-name">Cena</div>
+            <div class="meal-check-icon">✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fuerza -->
+    <div class="section-label">Entrenamiento</div>
+    <div class="habit-card" id="card-fuerza">
+      <div class="habit-header" onclick="toggleCard('fuerza')">
+        <div class="habit-check">
+          <svg class="habit-check-svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="habit-icon">💪</div>
+        <div class="habit-info">
+          <div class="habit-name">Entrenamiento de fuerza</div>
+          <div class="habit-sub" id="fuerzaSub">Meta: 4 días/semana · <span id="fuerzaCount">0</span>/4</div>
+        </div>
+      </div>
+      <div class="habit-extra">
+        <div class="extra-label">Días entrenados esta semana</div>
+        <div class="days-grid" id="fuerzaDays">
+          <div class="day-chip" data-d="0" onclick="toggleFuerzaDay(0)">Lun</div>
+          <div class="day-chip" data-d="1" onclick="toggleFuerzaDay(1)">Mar</div>
+          <div class="day-chip" data-d="2" onclick="toggleFuerzaDay(2)">Mié</div>
+          <div class="day-chip" data-d="3" onclick="toggleFuerzaDay(3)">Jue</div>
+          <div class="day-chip" data-d="4" onclick="toggleFuerzaDay(4)">Vie</div>
+          <div class="day-chip" data-d="5" onclick="toggleFuerzaDay(5)">Sáb</div>
+          <div class="day-chip" data-d="6" onclick="toggleFuerzaDay(6)">Dom</div>
+        </div>
+        <div id="fuerzaAlert" class="alert-badge" style="margin-top:10px;display:none">💪 ¡Excelente! Meta de la semana cumplida</div>
+      </div>
+    </div>
+
+    <!-- Café -->
+    <div class="section-label">Café</div>
+    <div class="habit-card" id="card-cafe">
+      <div class="habit-header" onclick="toggleCard('cafe')">
+        <div class="habit-check">
+          <svg class="habit-check-svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <polyline points="2,6 5,9 10,3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="habit-icon">☕</div>
+        <div class="habit-info">
+          <div class="habit-name">Máximo 1 café</div>
+          <div class="habit-sub" id="cafeSub">Tazas hoy: <span id="cafeCount">0</span>/1</div>
+        </div>
+      </div>
+      <div class="habit-extra">
+        <div class="extra-label">¿Tomaste café hoy?</div>
+        <div style="display:flex;gap:8px;margin-bottom:8px">
+          <button onclick="setCafe(0)" class="btn" style="flex:1;padding:10px;font-size:13px" id="cafeBtnNo">No tomé ✓</button>
+          <button onclick="setCafe(1)" class="btn" style="flex:1;padding:10px;font-size:13px" id="cafeBtnSi">1 taza ☕</button>
+        </div>
+        <div id="cafeWarn" class="alert-badge"></div>
+      </div>
+    </div>
+
+  </div><!-- /page-hoy -->
+
+
+  <!-- ══ PAGE: DASHBOARD ══ -->
+  <div class="page" id="page-dash">
+    <div class="page-title">Dashboard</div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Racha actual</div>
+        <div class="stat-value" id="d-streak">0<span class="stat-unit"> días</span></div>
+        <div class="stat-sub">🔥</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Récord de racha</div>
+        <div class="stat-value" id="d-best-streak">0<span class="stat-unit"> días</span></div>
+        <div class="stat-sub">🏆</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">% este mes</div>
+        <div class="stat-value" id="d-monthly">0<span class="stat-unit">%</span></div>
+        <div class="mini-prog"><div class="mini-prog-fill" id="d-monthly-bar" style="width:0%;background:var(--purple)"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Score semanal</div>
+        <div class="stat-value" id="d-weekly-score">0<span class="stat-unit">/100</span></div>
+        <div class="mini-prog"><div class="mini-prog-fill" id="d-weekly-bar" style="width:0%;background:var(--green)"></div></div>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="section-label">Agua (7 días)</div>
+    <div class="stat-card">
+      <div class="chart-wrap">
+        <canvas id="chartAgua"></canvas>
+      </div>
+    </div>
+
+    <div class="section-label">Sueño (7 días)</div>
+    <div class="stat-card">
+      <div class="chart-wrap">
+        <canvas id="chartSueno"></canvas>
+      </div>
+    </div>
+
+    <div class="section-label">Fuerza (4 semanas)</div>
+    <div class="stat-card">
+      <div class="chart-wrap">
+        <canvas id="chartFuerza"></canvas>
+      </div>
+    </div>
+
+    <!-- Calendar -->
+    <div class="section-label">Calendario mensual</div>
+    <div class="stat-card full">
+      <div class="cal-header">
+        <button class="cal-nav" onclick="calNav(-1)">‹</button>
+        <div class="cal-title" id="calTitle"></div>
+        <button class="cal-nav" onclick="calNav(1)">›</button>
+      </div>
+      <div class="cal-weekdays">
+        <div class="cal-wd">L</div><div class="cal-wd">M</div><div class="cal-wd">X</div>
+        <div class="cal-wd">J</div><div class="cal-wd">V</div><div class="cal-wd">S</div>
+        <div class="cal-wd">D</div>
+      </div>
+      <div class="cal-days" id="calDays"></div>
+    </div>
+
+    <!-- Heatmap -->
+    <div class="section-label">Año completo</div>
+    <div class="stat-card full">
+      <div class="heatmap-months" id="heatmapMonths"></div>
+      <div class="heatmap-scroll">
+        <div class="heatmap-grid" id="heatmapGrid"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;margin-top:10px;justify-content:flex-end">
+        <span style="font-size:10px;color:var(--text-muted)">menos</span>
+        <div style="width:10px;height:10px;border-radius:2px;background:var(--bg3)"></div>
+        <div style="width:10px;height:10px;border-radius:2px;background:rgba(168,85,247,0.3)"></div>
+        <div style="width:10px;height:10px;border-radius:2px;background:rgba(168,85,247,0.6)"></div>
+        <div style="width:10px;height:10px;border-radius:2px;background:var(--purple)"></div>
+        <span style="font-size:10px;color:var(--text-muted)">más</span>
+      </div>
+    </div>
+
+  </div><!-- /page-dash -->
+
+
+  <!-- ══ PAGE: NOTIFICACIONES ══ -->
+  <div class="page" id="page-notif">
+    <div class="page-title">Notificaciones</div>
+
+    <div id="notifPermStatus" class="alert-badge show" style="margin-bottom:16px">
+      🔔 Toca una notificación para activar permisos
+    </div>
+
+    <div class="notif-card" id="notif-agua" onclick="toggleNotif('agua')">
+      <div class="notif-icon">💧</div>
+      <div class="notif-info">
+        <div class="notif-title">Recordatorio de agua</div>
+        <div class="notif-sub">Cada 90 min · "¿Tomaste 250 ml?"</div>
+      </div>
+      <div class="toggle" id="toggle-agua"></div>
+    </div>
+
+    <div class="notif-card" id="notif-sueno" onclick="toggleNotif('sueno')">
+      <div class="notif-icon">🌙</div>
+      <div class="notif-info">
+        <div class="notif-title">Hora de dormir</div>
+        <div class="notif-sub">Alerta a las 22:15 · "Prepárate para dormir"</div>
+      </div>
+      <div class="toggle" id="toggle-sueno"></div>
+    </div>
+
+    <div class="notif-card" id="notif-comida1" onclick="toggleNotif('comida1')">
+      <div class="notif-icon">🥗</div>
+      <div class="notif-info">
+        <div class="notif-title">Desayuno</div>
+        <div class="notif-sub">Recordatorio a las 9:45 am</div>
+      </div>
+      <div class="toggle" id="toggle-comida1"></div>
+    </div>
+
+    <div class="notif-card" id="notif-comida2" onclick="toggleNotif('comida2')">
+      <div class="notif-icon">🍽️</div>
+      <div class="notif-info">
+        <div class="notif-title">Comida principal</div>
+        <div class="notif-sub">Recordatorio a la 1:00 pm</div>
+      </div>
+      <div class="toggle" id="toggle-comida2"></div>
+    </div>
+
+    <div class="notif-card" id="notif-snack" onclick="toggleNotif('snack')">
+      <div class="notif-icon">🍎</div>
+      <div class="notif-info">
+        <div class="notif-title">Snack</div>
+        <div class="notif-sub">Recordatorio a las 4:00 pm</div>
+      </div>
+      <div class="toggle" id="toggle-snack"></div>
+    </div>
+
+    <div class="notif-card" id="notif-cena" onclick="toggleNotif('cena')">
+      <div class="notif-icon">🌮</div>
+      <div class="notif-info">
+        <div class="notif-title">Cena</div>
+        <div class="notif-sub">Recordatorio a las 8:00 pm</div>
+      </div>
+      <div class="toggle" id="toggle-cena"></div>
+    </div>
+
+    <div class="divider"></div>
+    <div style="font-size:11px;color:var(--text-muted);text-align:center;padding:0 10px;line-height:1.6">
+      Las notificaciones requieren que la app esté abierta o instalada como PWA. En Safari iPhone: <strong style="color:var(--text)">Compartir → Añadir a pantalla de inicio</strong> para activar modo standalone.
+    </div>
+
+  </div><!-- /page-notif -->
+
+  <!-- ══ PAGE: IA ══ -->
+  <div class="page" id="page-ia">
+    <div class="page-title">Coach IA</div>
+
+    <!-- API Key config -->
+    <div class="ai-apikey-wrap" id="aiKeyWrap">
+      <div class="ai-apikey-label">🔑 API Key de Anthropic</div>
+      <div class="ai-apikey-row">
+        <input type="password" class="ai-apikey-input" id="aiKeyInput" placeholder="sk-ant-api03-..." autocomplete="off">
+        <button class="ai-apikey-save" onclick="saveApiKey()">Guardar</button>
+      </div>
+      <div class="ai-key-status" id="aiKeyStatus">
+        Obtén tu API key gratis en <strong style="color:var(--text)">console.anthropic.com</strong> (plan gratuito incluye créditos)
+      </div>
+    </div>
+
+    <!-- Hero + botón principal -->
+    <div class="ai-hero">
+      <div class="ai-hero-title">¿Cómo vas hoy, Israel?</div>
+      <div class="ai-hero-sub">La IA analiza tus hábitos de hoy y te da retroalimentación personalizada basada en tu plan Matura.Fit.</div>
+      <button class="ai-btn" id="aiBtnMain" onclick="runAIAnalysis('dia')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><circle cx="18" cy="6" r="3"/></svg>
+        Analizar mi día
+      </button>
+    </div>
+
+    <!-- Preguntas rápidas -->
+    <div class="section-label">Preguntar sobre</div>
+    <div class="ai-chips">
+      <button class="ai-chip" onclick="runAIAnalysis('agua')">💧 Hidratación</button>
+      <button class="ai-chip" onclick="runAIAnalysis('sueno')">🌙 Sueño</button>
+      <button class="ai-chip" onclick="runAIAnalysis('comidas')">🥗 Comidas</button>
+      <button class="ai-chip" onclick="runAIAnalysis('entreno')">💪 Entrenamiento</button>
+      <button class="ai-chip" onclick="runAIAnalysis('semana')">📊 Mi semana</button>
+      <button class="ai-chip" onclick="runAIAnalysis('consejo')">⭐ Consejo del día</button>
+    </div>
+
+    <!-- Respuesta -->
+    <div class="ai-response-wrap" id="aiResponseWrap">
+      <div class="ai-response-header">
+        <div class="ai-response-dot" id="aiDot"></div>
+        <div class="ai-response-label" id="aiResponseLabel">Analizando...</div>
+      </div>
+      <div class="ai-response-body" id="aiResponseBody"></div>
+    </div>
+
+    <!-- Historial -->
+    <div class="section-label" id="aiHistoryLabel" style="display:none">Análisis anteriores</div>
+    <div id="aiHistoryList"></div>
+
+  </div><!-- /page-ia -->
+
+</div><!-- /app -->
+
+<!-- Bottom Nav -->
+<nav class="bottom-nav">
+  <button class="nav-btn active" onclick="goPage('hoy',this)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="3"/>
+      <path d="M3 9h18M9 3v6M15 3v6"/>
+      <path d="M8 14h2M8 17h2M12 14h4M12 17h4"/>
+    </svg>
+    Hoy
+  </button>
+  <button class="nav-btn" onclick="goPage('dash',this)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 3v16a2 2 0 002 2h16"/>
+      <path d="M7 16l4-4 4 4 5-5"/>
+    </svg>
+    Stats
+  </button>
+  <button class="nav-btn" onclick="goPage('notif',this)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9"/>
+      <path d="M10.3 21a1.94 1.94 0 003.4 0"/>
+    </svg>
+    Alertas
+  </button>
+  <button class="nav-btn" onclick="goPage('ia',this)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+      <path d="M8 12h8M12 8v8"/>
+      <circle cx="12" cy="12" r="3" fill="currentColor" opacity="0.3"/>
+    </svg>
+    Coach IA
+  </button>
+</nav>
+
+<!-- Chart.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+<script>
+// ═══════════════════════════════════════════
+//  GLOBALS
+// ═══════════════════════════════════════════
+let db;
+let today = getTodayKey();
+let calYear, calMonth;
+let notifTimers = {};
+let charts = {};
+
+function getTodayKey() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function getDateKey(date) {
+  return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+}
+
+// ═══════════════════════════════════════════
+//  IndexedDB
+// ═══════════════════════════════════════════
+function initDB() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open('IsraHabits', 2);
+
+    req.onupgradeneeded = (e) => {
+      const d = e.target.result;
+      if (!d.objectStoreNames.contains('days')) {
+        d.createObjectStore('days', { keyPath: 'date' });
+      }
+      if (!d.objectStoreNames.contains('settings')) {
+        d.createObjectStore('settings', { keyPath: 'key' });
+      }
+    };
+
+    req.onsuccess = (e) => { db = e.target.result; resolve(db); };
+    req.onerror = () => reject(req.error);
+  });
+}
+
+function getDay(date) {
+  return new Promise((resolve) => {
+    const tx = db.transaction('days', 'readonly');
+    const req = tx.objectStore('days').get(date);
+    req.onsuccess = () => resolve(req.result || createEmptyDay(date));
+    req.onerror = () => resolve(createEmptyDay(date));
+  });
+}
+
+function saveDay(data) {
+  return new Promise((resolve) => {
+    const tx = db.transaction('days', 'readwrite');
+    tx.objectStore('days').put(data);
+    tx.oncomplete = resolve;
+  });
+}
+
+function getAllDays() {
+  return new Promise((resolve) => {
+    const tx = db.transaction('days', 'readonly');
+    const all = [];
+    tx.objectStore('days').openCursor().onsuccess = (e) => {
+      const c = e.target.result;
+      if (c) { all.push(c.value); c.continue(); }
+      else resolve(all);
+    };
+  });
+}
+
+function getSetting(key) {
+  return new Promise((resolve) => {
+    const tx = db.transaction('settings', 'readonly');
+    const req = tx.objectStore('settings').get(key);
+    req.onsuccess = () => resolve(req.result ? req.result.val : null);
+    req.onerror = () => resolve(null);
+  });
+}
+
+function saveSetting(key, val) {
+  const tx = db.transaction('settings', 'readwrite');
+  tx.objectStore('settings').put({ key, val });
+}
+
+function createEmptyDay(date) {
+  return {
+    date,
+    agua: 0,
+    aguaDone: false,
+    cama: '23:00',
+    levanto: '07:00',
+    suenoDone: false,
+    meals: { desayuno: false, comida: false, snack: false, cena: false },
+    mealsDone: false,
+    fuerzaDays: [],
+    fuerzaDone: false,
+    cafeTazas: 0,
+    cafeDone: false,
+    score: 0,
+    allDone: false
+  };
+}
+
+// ═══════════════════════════════════════════
+//  STATE for today
+// ═══════════════════════════════════════════
+let dayData = null;
+
+async function loadToday() {
+  dayData = await getDay(today);
+  renderToday();
+}
+
+function renderToday() {
+  const d = new Date();
+  const opts = { weekday: 'long', day: 'numeric', month: 'long' };
+  document.getElementById('todayDateLabel').textContent =
+    d.toLocaleDateString('es-MX', opts);
+
+  // Water
+  document.getElementById('waterSlider').value = dayData.agua;
+  document.getElementById('waterSliderVal').textContent = dayData.agua + ' ml';
+  document.getElementById('waterDisplay').textContent = dayData.agua + ' ml';
+  const waterPct = Math.min(100, (dayData.agua / 2400) * 100);
+  document.getElementById('waterBarFill').style.width = waterPct + '%';
+  if (dayData.aguaDone) document.getElementById('card-agua').classList.add('done');
+  if (dayData.agua > 0 && dayData.agua < 2400) {
+    document.getElementById('waterAlert').classList.add('show');
+  }
+
+  // Sleep
+  document.getElementById('bedtimeInput').value = dayData.cama;
+  document.getElementById('waketimeInput').value = dayData.levanto;
+  updateSleepInfo();
+  if (dayData.suenoDone) document.getElementById('card-sueno').classList.add('done');
+
+  // Meals
+  const meals = dayData.meals;
+  Object.keys(meals).forEach(m => {
+    if (meals[m]) {
+      const row = document.querySelector(`.meal-row[data-meal="${m}"]`);
+      if (row) row.classList.add('done');
+    }
+  });
+  updateMealsCard();
+  if (dayData.mealsDone) document.getElementById('card-comidas').classList.add('done');
+
+  // Fuerza
+  dayData.fuerzaDays.forEach(d => {
+    const chip = document.querySelector(`.day-chip[data-d="${d}"]`);
+    if (chip) chip.classList.add('on');
+  });
+  updateFuerzaCard();
+  if (dayData.fuerzaDone) document.getElementById('card-fuerza').classList.add('done');
+
+  // Cafe
+  updateCafeCard();
+  if (dayData.cafeDone) document.getElementById('card-cafe').classList.add('done');
+
+  // Score
+  computeAndSaveScore();
+}
+
+// ═══════════════════════════════════════════
+//  TOGGLE CARDS
+// ═══════════════════════════════════════════
+function toggleCard(name) {
+  const card = document.getElementById('card-' + name);
+  const isExpanded = card.classList.contains('expanded');
+  // Close all
+  document.querySelectorAll('.habit-card').forEach(c => c.classList.remove('expanded'));
+  if (!isExpanded) card.classList.add('expanded');
+}
+
+// ═══════════════════════════════════════════
+//  WATER
+// ═══════════════════════════════════════════
+function onWaterChange(val) {
+  val = parseInt(val);
+  dayData.agua = val;
+  document.getElementById('waterSliderVal').textContent = val + ' ml';
+  document.getElementById('waterDisplay').textContent = val + ' ml';
+  const pct = Math.min(100, (val / 2400) * 100);
+  document.getElementById('waterBarFill').style.width = pct + '%';
+
+  // Auto-check if >= 2400
+  const done = val >= 2400;
+  dayData.aguaDone = done;
+  const card = document.getElementById('card-agua');
+  card.classList.toggle('done', done);
+
+  const alertEl = document.getElementById('waterAlert');
+  alertEl.classList.toggle('show', val > 0 && val < 2400);
+
+  saveAndRefresh();
+}
+
+// ═══════════════════════════════════════════
+//  SLEEP
+// ═══════════════════════════════════════════
+function onSleepChange() {
+  dayData.cama = document.getElementById('bedtimeInput').value;
+  dayData.levanto = document.getElementById('waketimeInput').value;
+  updateSleepInfo();
+  saveAndRefresh();
+}
+
+function updateSleepInfo() {
+  const bedStr = dayData.cama || '23:00';
+  const wakeStr = dayData.levanto || '07:00';
+  const [bh, bm] = bedStr.split(':').map(Number);
+  const [wh, wm] = wakeStr.split(':').map(Number);
+
+  let bedMins = bh * 60 + bm;
+  let wakeMins = wh * 60 + wm;
+  if (wakeMins <= bedMins) wakeMins += 24 * 60;
+  const totalMins = wakeMins - bedMins;
+  const hours = Math.floor(totalMins / 60);
+  const mins = totalMins % 60;
+
+  const infoEl = document.getElementById('sleepInfo');
+  infoEl.textContent = `Duración estimada: ${hours}h ${mins}min`;
+
+  const alertEl = document.getElementById('sleepAlert');
+  let alerts = [];
+  if (bedMins > 23*60) alerts.push('⚠️ Te acostaste después de las 23:00');
+  if (hours < 7) alerts.push('⚠️ Dormiste menos de 7 horas (mín. recomendado)');
+  alertEl.textContent = alerts.join(' · ');
+  alertEl.classList.toggle('show', alerts.length > 0);
+
+  const done = bedMins <= 23*60 && hours >= 7;
+  dayData.suenoDone = done;
+  document.getElementById('card-sueno').classList.toggle('done', done);
+}
+
+// ═══════════════════════════════════════════
+//  MEALS
+// ═══════════════════════════════════════════
+function toggleMeal(name) {
+  dayData.meals[name] = !dayData.meals[name];
+  const row = document.querySelector(`.meal-row[data-meal="${name}"]`);
+  row.classList.toggle('done', dayData.meals[name]);
+  updateMealsCard();
+  saveAndRefresh();
+}
+
+function updateMealsCard() {
+  const done = Object.values(dayData.meals).filter(Boolean).length;
+  const total = 4;
+  document.getElementById('mealsSubtitle').textContent = `${done} / ${total} comidas`;
+  const allDone = done === total;
+  dayData.mealsDone = allDone;
+  document.getElementById('card-comidas').classList.toggle('done', allDone);
+}
+
+// ═══════════════════════════════════════════
+//  FUERZA
+// ═══════════════════════════════════════════
+function toggleFuerzaDay(d) {
+  const idx = dayData.fuerzaDays.indexOf(d);
+  if (idx === -1) {
+    dayData.fuerzaDays.push(d);
+  } else {
+    dayData.fuerzaDays.splice(idx, 1);
+  }
+  const chip = document.querySelector(`.day-chip[data-d="${d}"]`);
+  chip.classList.toggle('on', dayData.fuerzaDays.includes(d));
+  updateFuerzaCard();
+  saveAndRefresh();
+}
+
+function updateFuerzaCard() {
+  const count = dayData.fuerzaDays.length;
+  document.getElementById('fuerzaCount').textContent = count;
+  const done = count >= 4;
+  dayData.fuerzaDone = done;
+  document.getElementById('card-fuerza').classList.toggle('done', done);
+  const alertEl = document.getElementById('fuerzaAlert');
+  if (done) {
+    alertEl.style.display = 'block';
+    alertEl.style.background = 'rgba(52,211,153,0.1)';
+    alertEl.style.borderColor = 'rgba(52,211,153,0.3)';
+    alertEl.style.color = '#34D399';
+    alertEl.textContent = '💪 ¡Excelente! Meta de 4 días cumplida esta semana';
+  } else {
+    alertEl.style.display = 'none';
+  }
+}
+
+// ═══════════════════════════════════════════
+//  CAFE
+// ═══════════════════════════════════════════
+function setCafe(n) {
+  dayData.cafeTazas = n;
+  updateCafeCard();
+  saveAndRefresh();
+}
+
+function updateCafeCard() {
+  const n = dayData.cafeTazas;
+  document.getElementById('cafeCount').textContent = n;
+  const done = n <= 1;
+  dayData.cafeDone = done;
+  document.getElementById('card-cafe').classList.toggle('done', done);
+
+  const btnNo = document.getElementById('cafeBtnNo');
+  const btnSi = document.getElementById('cafeBtnSi');
+  btnNo.style.borderColor = n === 0 ? 'var(--purple)' : 'var(--border)';
+  btnNo.style.color = n === 0 ? 'var(--purple)' : 'var(--text)';
+  btnSi.style.borderColor = n === 1 ? 'var(--purple)' : 'var(--border)';
+  btnSi.style.color = n === 1 ? 'var(--purple)' : 'var(--text)';
+
+  const warnEl = document.getElementById('cafeWarn');
+  if (n > 1) {
+    warnEl.classList.add('show');
+    warnEl.textContent = '⚠️ Más de 1 taza puede afectar el sueño y la recuperación';
+  } else {
+    warnEl.classList.remove('show');
+  }
+}
+
+// ═══════════════════════════════════════════
+//  SCORE
+// ═══════════════════════════════════════════
+function computeScore(d) {
+  let s = 0;
+  if (d.aguaDone) s += 25;
+  if (d.suenoDone) s += 25;
+  if (d.mealsDone) s += 25;
+  if (d.fuerzaDone) s += 15;
+  if (d.cafeDone) s += 10;
+  return s;
+}
+
+async function computeAndSaveScore() {
+  dayData.score = computeScore(dayData);
+  dayData.allDone = dayData.score === 100;
+  await saveDay(dayData);
+  updateScoreUI();
+  if (dayData.allDone) triggerConfetti();
+}
+
+async function saveAndRefresh() {
+  dayData.score = computeScore(dayData);
+  dayData.allDone = dayData.score >= 95;
+  await saveDay(dayData);
+  updateScoreUI();
+  if (dayData.allDone) triggerConfetti();
+}
+
+function updateScoreUI() {
+  const s = dayData.score;
+  document.getElementById('scoreBig').textContent = s;
+
+  // Ring
+  const circ = 239;
+  const offset = circ - (circ * s / 100);
+  document.getElementById('scoreRingFill').style.strokeDashoffset = offset;
+
+  // Title
+  let title, sub;
+  if (s === 0) { title = 'Empieza el día'; sub = 'Marca tus hábitos'; }
+  else if (s < 50) { title = 'Buen inicio'; sub = 'Sigue adelante 💪'; }
+  else if (s < 75) { title = 'Progreso real'; sub = 'Ya vas muy bien'; }
+  else if (s < 100) { title = 'Casi perfecto'; sub = 'Un último paso...'; }
+  else { title = '¡Día perfecto!'; sub = 'Racha intacta 🔥'; }
+
+  document.getElementById('scoreTitle').textContent = title;
+  document.getElementById('scoreSubtitle').textContent = sub;
+
+  // Streak
+  updateStreakDisplay();
+
+  // Banner
+  document.getElementById('completeBanner').classList.toggle('show', dayData.allDone);
+}
+
+async function updateStreakDisplay() {
+  const streak = await computeStreak();
+  document.getElementById('streakDisplay').textContent = streak + ' días';
+}
+
+async function computeStreak() {
+  const all = await getAllDays();
+  const map = {};
+  all.forEach(d => { map[d.date] = d; });
+
+  let streak = 0;
+  const d = new Date();
+  while (true) {
+    const key = getDateKey(d);
+    const rec = map[key];
+    if (!rec || rec.score < 50) break;
+    streak++;
+    d.setDate(d.getDate() - 1);
+  }
+  return streak;
+}
+
+async function computeBestStreak() {
+  const all = await getAllDays();
+  const map = {};
+  all.forEach(d => { map[d.date] = d; });
+  const keys = Object.keys(map).sort();
+  if (!keys.length) return 0;
+
+  let best = 0, cur = 0;
+  let d = new Date(keys[0]);
+  const end = new Date();
+
+  while (d <= end) {
+    const key = getDateKey(d);
+    if (map[key] && map[key].score >= 50) {
+      cur++;
+      best = Math.max(best, cur);
+    } else {
+      cur = 0;
+    }
+    d.setDate(d.getDate() + 1);
+  }
+  return best;
+}
+
+// ═══════════════════════════════════════════
+//  CONFETTI
+// ═══════════════════════════════════════════
+let confettiActive = false;
+function triggerConfetti() {
+  if (confettiActive) return;
+  confettiActive = true;
+  const container = document.getElementById('confettiContainer');
+  const colors = ['#A855F7','#C084FC','#7C3AED','#9333EA','#E879F9','#D8B4FE'];
+  for (let i = 0; i < 60; i++) {
+    const p = document.createElement('div');
+    p.className = 'c-piece';
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.top = '-10px';
+    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+    p.style.transform = `rotate(${Math.random()*360}deg)`;
+    p.style.animationDuration = (2 + Math.random() * 2) + 's';
+    p.style.animationDelay = (Math.random() * 1) + 's';
+    container.appendChild(p);
+    setTimeout(() => p.remove(), 4000);
+  }
+  setTimeout(() => { confettiActive = false; }, 5000);
+}
+
+// ═══════════════════════════════════════════
+//  NAVIGATION
+// ═══════════════════════════════════════════
+function goPage(name, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  btn.classList.add('active');
+
+  if (name === 'dash') loadDashboard();
+}
+
+// ═══════════════════════════════════════════
+//  DASHBOARD
+// ═══════════════════════════════════════════
+async function loadDashboard() {
+  const all = await getAllDays();
+  const map = {};
+  all.forEach(d => { map[d.date] = d; });
+
+  // Streak
+  const streak = await computeStreak();
+  const best = await computeBestStreak();
+  document.getElementById('d-streak').innerHTML = streak + '<span class="stat-unit"> días</span>';
+  document.getElementById('d-best-streak').innerHTML = best + '<span class="stat-unit"> días</span>';
+
+  // Monthly %
+  const now = new Date();
+  const monthKey = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
+  const monthDays = Object.values(map).filter(d => d.date.startsWith(monthKey));
+  const goodDays = monthDays.filter(d => d.score >= 50).length;
+  const totalPast = now.getDate();
+  const monthPct = totalPast > 0 ? Math.round((goodDays / totalPast) * 100) : 0;
+  document.getElementById('d-monthly').innerHTML = monthPct + '<span class="stat-unit">%</span>';
+  document.getElementById('d-monthly-bar').style.width = monthPct + '%';
+
+  // Weekly score
+  const weekDays = getLast7Keys();
+  const weekScores = weekDays.map(k => (map[k] ? map[k].score : 0));
+  const weekAvg = Math.round(weekScores.reduce((a,b) => a+b, 0) / 7);
+  document.getElementById('d-weekly-score').innerHTML = weekAvg + '<span class="stat-unit">/100</span>';
+  document.getElementById('d-weekly-bar').style.width = weekAvg + '%';
+
+  // Charts
+  renderCharts(map, weekDays);
+
+  // Calendar
+  calYear = now.getFullYear();
+  calMonth = now.getMonth();
+  renderCalendar(map);
+
+  // Heatmap
+  renderHeatmap(map);
+}
+
+function getLast7Keys() {
+  const keys = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    keys.push(getDateKey(d));
+  }
+  return keys;
+}
+
+function getLast4WeekKeys() {
+  const weeks = [];
+  for (let w = 3; w >= 0; w--) {
+    const wDays = [];
+    for (let d = 6; d >= 0; d--) {
+      const date = new Date();
+      date.setDate(date.getDate() - w*7 - d);
+      wDays.push(getDateKey(date));
+    }
+    weeks.push(wDays);
+  }
+  return weeks;
+}
+
+function renderCharts(map, weekDays) {
+  const labels7 = weekDays.map(k => {
+    const d = new Date(k + 'T12:00:00');
+    return d.toLocaleDateString('es-MX', { weekday: 'short' });
+  });
+
+  const chartDefaults = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { enabled: true } },
+    scales: {
+      x: { grid: { color: '#222', drawBorder: false }, ticks: { color: '#6B7280', font: { size: 10 } } },
+      y: { grid: { color: '#1A1A1A', drawBorder: false }, ticks: { color: '#6B7280', font: { size: 10 } } }
+    }
+  };
+
+  // Agua
+  const aguaData = weekDays.map(k => map[k] ? map[k].agua : 0);
+  if (charts.agua) charts.agua.destroy();
+  charts.agua = new Chart(document.getElementById('chartAgua'), {
+    type: 'bar',
+    data: {
+      labels: labels7,
+      datasets: [{
+        data: aguaData,
+        backgroundColor: weekDays.map((k,i) => aguaData[i] >= 2400 ? 'rgba(168,85,247,0.7)' : 'rgba(168,85,247,0.2)'),
+        borderRadius: 6,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      ...chartDefaults,
+      scales: {
+        ...chartDefaults.scales,
+        y: { ...chartDefaults.scales.y, max: 3000,
+          ticks: { ...chartDefaults.scales.y.ticks, callback: v => v/1000 + 'L' } }
+      }
+    }
+  });
+
+  // Sueño
+  const suenHData = weekDays.map(k => {
+    if (!map[k]) return 0;
+    const [bh,bm] = (map[k].cama || '23:00').split(':').map(Number);
+    const [wh,wm] = (map[k].levanto || '07:00').split(':').map(Number);
+    let bed = bh*60+bm, wake = wh*60+wm;
+    if (wake <= bed) wake += 1440;
+    return parseFloat(((wake-bed)/60).toFixed(1));
+  });
+  if (charts.sueno) charts.sueno.destroy();
+  charts.sueno = new Chart(document.getElementById('chartSueno'), {
+    type: 'line',
+    data: {
+      labels: labels7,
+      datasets: [{
+        data: suenHData,
+        borderColor: 'rgba(168,85,247,0.8)',
+        backgroundColor: 'rgba(168,85,247,0.08)',
+        fill: true,
+        tension: 0.4,
+        pointBackgroundColor: suenHData.map(h => h >= 7 ? '#A855F7' : '#F87171'),
+        pointRadius: 5,
+        borderWidth: 2
+      }]
+    },
+    options: {
+      ...chartDefaults,
+      scales: {
+        ...chartDefaults.scales,
+        y: { ...chartDefaults.scales.y, min: 0, max: 10,
+          ticks: { ...chartDefaults.scales.y.ticks, callback: v => v + 'h' } }
+      }
+    }
+  });
+
+  // Fuerza (4 semanas)
+  const w4 = getLast4WeekKeys();
+  const fuerzaLabels = w4.map((wk, i) => 'Sem ' + (i+1));
+  const fuerzaData = w4.map(wk => {
+    const daysWithTraining = wk.filter(k => map[k] && map[k].fuerzaDays && map[k].fuerzaDays.length > 0).length;
+    return daysWithTraining;
+  });
+  if (charts.fuerza) charts.fuerza.destroy();
+  charts.fuerza = new Chart(document.getElementById('chartFuerza'), {
+    type: 'bar',
+    data: {
+      labels: fuerzaLabels,
+      datasets: [{
+        data: fuerzaData,
+        backgroundColor: fuerzaData.map(d => d >= 4 ? 'rgba(52,211,153,0.7)' : 'rgba(168,85,247,0.4)'),
+        borderRadius: 8,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      ...chartDefaults,
+      scales: {
+        ...chartDefaults.scales,
+        y: { ...chartDefaults.scales.y, min: 0, max: 7,
+          ticks: { ...chartDefaults.scales.y.ticks, callback: v => v + 'd' } }
+      }
+    }
+  });
+}
+
+// ═══════════════════════════════════════════
+//  CALENDAR
+// ═══════════════════════════════════════════
+function calNav(dir) {
+  calMonth += dir;
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  getAllDays().then(all => {
+    const map = {};
+    all.forEach(d => { map[d.date] = d; });
+    renderCalendar(map);
+  });
+}
+
+function renderCalendar(map) {
+  const months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  document.getElementById('calTitle').textContent = months[calMonth] + ' ' + calYear;
+
+  const grid = document.getElementById('calDays');
+  grid.innerHTML = '';
+
+  const firstDay = new Date(calYear, calMonth, 1);
+  let startDow = firstDay.getDay(); // 0=Sun
+  startDow = startDow === 0 ? 6 : startDow - 1; // Mon=0
+
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+  const todayStr = getTodayKey();
+
+  // Empty cells
+  for (let i = 0; i < startDow; i++) {
+    const el = document.createElement('div');
+    el.className = 'cal-day other-month';
+    grid.appendChild(el);
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const key = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const el = document.createElement('div');
+    el.className = 'cal-day';
+    el.textContent = d;
+    if (key === todayStr) el.classList.add('today');
+    const rec = map[key];
+    if (rec) {
+      if (rec.score >= 100) el.classList.add('perfect');
+      else if (rec.score >= 50) el.classList.add('good');
+    }
+    grid.appendChild(el);
+  }
+}
+
+// ═══════════════════════════════════════════
+//  HEATMAP
+// ═══════════════════════════════════════════
+function renderHeatmap(map) {
+  const grid = document.getElementById('heatmapGrid');
+  const monthsEl = document.getElementById('heatmapMonths');
+  grid.innerHTML = '';
+  monthsEl.innerHTML = '';
+
+  const now = new Date();
+  const end = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const start = new Date(end);
+  start.setDate(start.getDate() - 364);
+
+  // Align to Monday
+  while (start.getDay() !== 1) start.setDate(start.getDate() - 1);
+
+  const d = new Date(start);
+  let col = null;
+  let colIdx = 0;
+  let lastMonth = -1;
+
+  while (d <= end) {
+    if (d.getDay() === 1) {
+      col = document.createElement('div');
+      col.className = 'heatmap-col';
+      grid.appendChild(col);
+      colIdx++;
+
+      // Month label
+      if (d.getMonth() !== lastMonth) {
+        lastMonth = d.getMonth();
+        const months = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+        const lbl = document.createElement('div');
+        lbl.className = 'heatmap-month-label';
+        lbl.textContent = months[d.getMonth()];
+        lbl.style.width = '12px';
+        lbl.style.marginLeft = ((colIdx-1) * 15) + 'px';
+        lbl.style.position = 'absolute';
+        monthsEl.style.position = 'relative';
+        monthsEl.appendChild(lbl);
+      }
+    }
+
+    const key = getDateKey(d);
+    const cell = document.createElement('div');
+    cell.className = 'heatmap-cell';
+    const rec = map[key];
+    if (rec) {
+      let v = 0;
+      if (rec.score >= 25) v = 1;
+      if (rec.score >= 50) v = 2;
+      if (rec.score >= 75) v = 3;
+      if (rec.score >= 100) v = 4;
+      if (v > 0) cell.setAttribute('data-v', v);
+    }
+    cell.title = key;
+    if (col) col.appendChild(cell);
+
+    d.setDate(d.getDate() + 1);
+  }
+}
+
+// ═══════════════════════════════════════════
+//  NOTIFICATIONS
+// ═══════════════════════════════════════════
+const notifSettings = {};
+
+async function loadNotifSettings() {
+  const keys = ['agua','sueno','comida1','comida2','snack','cena'];
+  for (const k of keys) {
+    const v = await getSetting('notif_' + k);
+    notifSettings[k] = v || false;
+    const toggle = document.getElementById('toggle-' + k);
+    const card = document.getElementById('notif-' + k);
+    if (v) {
+      toggle.classList.add('on');
+      card.classList.add('on');
+    }
+  }
+}
+
+async function toggleNotif(key) {
+  const hasPermission = await requestNotifPermission();
+  if (!hasPermission) return;
+
+  notifSettings[key] = !notifSettings[key];
+  saveSetting('notif_' + key, notifSettings[key]);
+
+  const toggle = document.getElementById('toggle-' + key);
+  const card = document.getElementById('notif-' + key);
+  toggle.classList.toggle('on', notifSettings[key]);
+  card.classList.toggle('on', notifSettings[key]);
+
+  if (notifSettings[key]) {
+    scheduleNotif(key);
+  } else {
+    clearNotifTimer(key);
+  }
+
+  document.getElementById('notifPermStatus').style.display = 'none';
+}
+
+async function requestNotifPermission() {
+  if (!('Notification' in window)) {
+    alert('Las notificaciones no están disponibles en este navegador');
+    return false;
+  }
+  if (Notification.permission === 'granted') return true;
+  if (Notification.permission === 'denied') {
+    alert('Las notificaciones están bloqueadas. Actívalas en Configuración del navegador.');
+    return false;
+  }
+  const result = await Notification.requestPermission();
+  return result === 'granted';
+}
+
+function scheduleNotif(key) {
+  clearNotifTimer(key);
+
+  if (key === 'agua') {
+    // Every 90 min
+    const fire = () => {
+      if (Notification.permission === 'granted') {
+        new Notification('💧 Isra Habits', { body: '¿Tomaste 250 ml de agua? ¡Hidratación al día!', icon: '' });
+      }
+      notifTimers[key] = setTimeout(fire, 90 * 60 * 1000);
+    };
+    notifTimers[key] = setTimeout(fire, 90 * 60 * 1000);
+  }
+
+  const timeMap = {
+    sueno: '22:15',
+    comida1: '09:45',
+    comida2: '13:00',
+    snack: '16:00',
+    cena: '20:00'
+  };
+
+  const msgMap = {
+    sueno: '🌙 Prepárate para dormir · apaga pantallas',
+    comida1: '🥗 Hora del desayuno · 10 am',
+    comida2: '🍽️ Hora de la comida · 1 pm',
+    snack: '🍎 Hora del snack · fruta + nueces',
+    cena: '🌮 Hora de cenar · 8 pm'
+  };
+
+  if (timeMap[key]) {
+    const [h, m] = timeMap[key].split(':').map(Number);
+    const now = new Date();
+    let target = new Date(now);
+    target.setHours(h, m, 0, 0);
+    if (target < now) target.setDate(target.getDate() + 1);
+    const ms = target - now;
+    notifTimers[key] = setTimeout(() => {
+      if (Notification.permission === 'granted') {
+        new Notification('🥗 Isra Habits', { body: msgMap[key] });
+      }
+      scheduleNotif(key); // reschedule for next day
+    }, ms);
+  }
+}
+
+function clearNotifTimer(key) {
+  if (notifTimers[key]) {
+    clearTimeout(notifTimers[key]);
+    delete notifTimers[key];
+  }
+}
+
+// ═══════════════════════════════════════════
+//  SERVICE WORKER (PWA offline)
+// ═══════════════════════════════════════════
+function registerSW() {
+  if (!('serviceWorker' in navigator)) return;
+
+  const swCode = `
+const CACHE = 'isra-habits-v1';
+self.addEventListener('install', e => {
+  self.skipWaiting();
+});
+self.addEventListener('activate', e => {
+  e.waitUntil(clients.claim());
+});
+self.addEventListener('fetch', e => {
+  e.respondWith(
+    caches.match(e.request).then(r => r || fetch(e.request).then(resp => {
+      return caches.open(CACHE).then(cache => {
+        cache.put(e.request, resp.clone());
+        return resp;
+      });
+    }).catch(() => caches.match(e.request)))
+  );
+});
+  `;
+
+  const blob = new Blob([swCode], { type: 'application/javascript' });
+  const swUrl = URL.createObjectURL(blob);
+  navigator.serviceWorker.register(swUrl).catch(() => {});
+}
+
+// ═══════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════
+async function init() {
+  await initDB();
+  await loadToday();
+  await loadNotifSettings();
+  await initAI();
+  registerSW();
+
+  // Auto-refresh if day changes
+  setInterval(() => {
+    const newToday = getTodayKey();
+    if (newToday !== today) {
+      today = newToday;
+      dayData = null;
+      loadToday();
+    }
+  }, 60000);
+}
+
+// ═══════════════════════════════════════════
+//  CLAUDE AI COACH
+// ═══════════════════════════════════════════
+
+let aiApiKey = '';
+let aiHistory = [];
+
+async function initAI() {
+  aiApiKey = (await getSetting('ai_api_key')) || '';
+  if (aiApiKey) {
+    document.getElementById('aiKeyInput').value = aiApiKey;
+    document.getElementById('aiKeyStatus').textContent = '✓ API key guardada';
+    document.getElementById('aiKeyStatus').className = 'ai-key-status ok';
+  }
+  aiHistory = JSON.parse((await getSetting('ai_history')) || '[]');
+  renderAIHistory();
+}
+
+async function saveApiKey() {
+  const val = document.getElementById('aiKeyInput').value.trim();
+  if (!val.startsWith('sk-ant-')) {
+    document.getElementById('aiKeyStatus').textContent = '⚠️ Debe empezar con sk-ant-...';
+    document.getElementById('aiKeyStatus').className = 'ai-key-status err';
+    return;
+  }
+  aiApiKey = val;
+  saveSetting('ai_api_key', val);
+  document.getElementById('aiKeyStatus').textContent = '✓ API key guardada correctamente';
+  document.getElementById('aiKeyStatus').className = 'ai-key-status ok';
+}
+
+function buildPrompt(type, todaySnap, weekSnap) {
+  const d = todaySnap;
+  const sleepHours = (() => {
+    const [bh, bm] = (d.cama || '23:00').split(':').map(Number);
+    const [wh, wm] = (d.levanto || '07:00').split(':').map(Number);
+    let bedMins = bh*60+bm, wakeMins = wh*60+wm;
+    if (wakeMins <= bedMins) wakeMins += 1440;
+    return ((wakeMins - bedMins) / 60).toFixed(1);
+  })();
+
+  const mealsCount = Object.values(d.meals || {}).filter(Boolean).length;
+  const context = `Eres el coach de salud personal de Israel, un joven adulto siguiendo el plan Matura.Fit. Sé directo, empático, con conocimiento real de fitness y nutrición. Responde en español, máximo 180 palabras. Sin listas con viñetas, habla de forma natural.
+
+DATOS DE HOY (${d.date}):
+- Agua: ${d.agua || 0} ml (meta: 2400 ml) → ${d.aguaDone ? '✓ cumplido' : '✗ pendiente'}
+- Sueño: acostó ${d.cama}, levantó ${d.levanto} → ${sleepHours}h (meta: 7h) → ${d.suenoDone ? '✓ cumplido' : '✗ pendiente'}
+- Comidas: ${mealsCount}/4 → ${d.mealsDone ? '✓ cumplido' : '✗ pendiente'}
+- Entrenamiento: ${(d.fuerzaDays||[]).length}/4 días esta semana → ${d.fuerzaDone ? '✓ meta cumplida' : '✗ en progreso'}
+- Café: ${d.cafeTazas || 0} taza(s) → ${d.cafeDone ? '✓ ok' : '⚠️ excedió'}
+- Score del día: ${d.score || 0}/100
+
+HISTORIAL SEMANA:
+${weekSnap}`;
+
+  const prompts = {
+    dia: context + '\n\nAnaliza el día de Israel de forma completa: qué va bien, qué mejorar y un mensaje motivador basado en su score actual.',
+    agua: context + '\n\nAnaliza específicamente su hidratación hoy. Explica el impacto en su rendimiento y recuperación según lo que registró.',
+    sueno: context + '\n\nAnaliza su calidad de sueño. Relaciona las horas dormidas con su energía, recuperación muscular y progreso en el plan.',
+    comidas: context + '\n\nComéntale sobre su plan de comidas de hoy. Si no completó alguna, explica por qué es importante. Si cumplió, refuerza el hábito.',
+    entreno: context + '\n\nAnaliza su entrenamiento de fuerza esta semana. ¿Está en camino a cumplir los 4 días? Motívalo o ajusta expectativas.',
+    semana: context + '\n\nDa un resumen motivador de su semana completa. Destaca patrones positivos y uno o dos puntos de mejora concretos.',
+    consejo: context + '\n\nDa UN consejo específico y accionable para hoy basado en sus datos. Algo que pueda hacer en las próximas horas para mejorar su score o bienestar.'
+  };
+  return prompts[type] || prompts.dia;
+}
+
+async function buildWeekSnap() {
+  const all = await getAllDays();
+  const sorted = all.sort((a, b) => b.date.localeCompare(a.date)).slice(0, 7);
+  return sorted.map(d => `  ${d.date}: score ${d.score}/100 | agua ${d.agua}ml | sueño ${d.cama}-${d.levanto} | comidas ${Object.values(d.meals||{}).filter(Boolean).length}/4`).join('\n') || '  Sin historial previo';
+}
+
+async function runAIAnalysis(type) {
+  if (!aiApiKey) {
+    document.getElementById('aiResponseWrap').classList.add('show');
+    document.getElementById('aiDot').className = 'ai-response-dot';
+    document.getElementById('aiResponseLabel').textContent = 'API Key requerida';
+    document.getElementById('aiResponseBody').textContent = 'Primero guarda tu API key de Anthropic arriba. La obtienes gratis en console.anthropic.com — el plan gratuito incluye créditos suficientes para usar el coach todos los días.';
+    return;
+  }
+
+  const labels = { dia:'Analizando tu día', agua:'Analizando hidratación', sueno:'Analizando sueño', comidas:'Analizando comidas', entreno:'Analizando entrenamiento', semana:'Analizando tu semana', consejo:'Generando consejo del día' };
+
+  const wrap = document.getElementById('aiResponseWrap');
+  const dot = document.getElementById('aiDot');
+  const labelEl = document.getElementById('aiResponseLabel');
+  const body = document.getElementById('aiResponseBody');
+  const btn = document.getElementById('aiBtnMain');
+
+  wrap.classList.add('show');
+  dot.className = 'ai-response-dot loading';
+  labelEl.textContent = labels[type] || 'Analizando...';
+  body.textContent = '';
+  body.className = 'ai-response-body loading-dots';
+  btn.disabled = true;
+
+  try {
+    const weekSnap = await buildWeekSnap();
+    const prompt = buildPrompt(type, dayData || createEmptyDay(today), weekSnap);
+
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-key': aiApiKey, 'anthropic-version': '2023-06-01' },
+      body: JSON.stringify({
+        model: 'claude-haiku-4-5-20251001',
+        max_tokens: 400,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    const data = await response.json();
+
+    if (data.error) throw new Error(data.error.message);
+
+    const text = data.content?.[0]?.text || 'No se pudo obtener respuesta.';
+
+    dot.className = 'ai-response-dot';
+    labelEl.textContent = 'Coach IA · ' + new Date().toLocaleTimeString('es-MX', { hour:'2-digit', minute:'2-digit' });
+    body.className = 'ai-response-body';
+    body.textContent = text;
+
+    // Save to history
+    const entry = { date: new Date().toISOString(), type, score: dayData?.score || 0, text };
+    aiHistory.unshift(entry);
+    if (aiHistory.length > 20) aiHistory.pop();
+    saveSetting('ai_history', JSON.stringify(aiHistory));
+    renderAIHistory();
+
+  } catch (err) {
+    dot.className = 'ai-response-dot';
+    labelEl.textContent = 'Error';
+    body.className = 'ai-response-body';
+    body.textContent = '⚠️ ' + (err.message || 'Error al conectar con la API. Verifica tu API key y conexión a internet.');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function renderAIHistory() {
+  const list = document.getElementById('aiHistoryList');
+  const label = document.getElementById('aiHistoryLabel');
+
+  // Only show history from previous sessions (not today's last one which is in the response box)
+  const hist = aiHistory.slice(1);
+  if (!hist.length) { label.style.display = 'none'; list.innerHTML = ''; return; }
+
+  label.style.display = 'block';
+  list.innerHTML = hist.slice(0, 5).map(h => {
+    const d = new Date(h.date);
+    const dateStr = d.toLocaleDateString('es-MX', { weekday:'short', day:'numeric', month:'short' }) + ' · ' + d.toLocaleTimeString('es-MX', { hour:'2-digit', minute:'2-digit' });
+    return `<div class="ai-history-item" onclick="expandHistory(this)">
+      <div class="ai-history-date">${dateStr} · score ${h.score}/100</div>
+      <div class="ai-history-preview">${h.text}</div>
+    </div>`;
+  }).join('');
+}
+
+function expandHistory(el) {
+  const preview = el.querySelector('.ai-history-preview');
+  const isExpanded = el.getAttribute('data-expanded') === '1';
+  if (isExpanded) {
+    preview.style.webkitLineClamp = '2';
+    preview.style.overflow = 'hidden';
+    el.setAttribute('data-expanded', '0');
+  } else {
+    preview.style.webkitLineClamp = 'unset';
+    preview.style.overflow = 'visible';
+    el.setAttribute('data-expanded', '1');
+  }
+}
+
+init();
+</script>
+</body>
+</html>
